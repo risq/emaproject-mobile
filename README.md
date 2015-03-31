@@ -48,5 +48,3 @@ This will run karma, build your files, revision and compress them, and copy the 
 
 [![Build Status](https://travis-ci.org/greypants/gulp-starter.svg?branch=static-server)](https://travis-ci.org/greypants/gulp-starter)
 =======
-
-
