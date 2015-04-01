@@ -4,14 +4,20 @@
 // Mixins CSS3
 @import "compass/css3";
 
+// Variables
+@import "base/variables";
+
+// Personal mixins
+@import "base/mixins";
+
 // Fonts
 @import "base/fonts";
 
 // Keyframe
 @import "base/keyframe";
 
-// Base
-@import "base";
+// Layout
+@import "base/layout";
 
 // Index page
 @import "index.scss";

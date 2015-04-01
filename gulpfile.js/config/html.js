@@ -1,4 +1,4 @@
-var config = require('./')
+var config = require('./');
 
 module.exports = {
   watch: config.sourceDirectory + '/views/**/*.html',
@@ -7,4 +7,4 @@ module.exports = {
   swig: {
     defaults: { cache: false }
   }
-}
+};
