@@ -1,122 +1,5 @@
-//
-// ---------------------------------- [INDEX] ----------------------------------
-//
-
-body {
-  color: $colorWhite; 
-  font-family: "latoregular", sans-serif;
-  transition: transform 250ms;
-}
-
-canvas, #container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-canvas {
-  z-index: 0;
-}
-
-#container {
-  z-index: 1;
-  background: rgba(20,26,51,.9);
-}
-
-//
-// ---------------------------------- [HEADER] ----------------------------------
-//
-
-.headBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 60px;
-  box-sizing: border-box;
-  padding: 20px;
-  z-index: 3;
-}
-
-.hamburger {
-  float: left;
-}
-
-.infos {
-  float: right;
-}
-
-//
-// ---------------------------------- [UTIL] ----------------------------------
-//
-
-p {
-  font-size: .8em;
-}
-
-a {
-  color: $colorPrimary;
-  text-decoration: none;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  text-transform: uppercase;
-  font-family: 'latobold', sans-serif;
-}
-
-h4 {
-  color: $colorThirdary;
-  font-size: .8em;
-}
-
-.btn {
-  background: $colorWhite;
-  color: $colorBlack;
-  border-radius: 2em;
-  white-space: nowrap;
-  display: inline-block;
-  padding: 10px 20px;
-  margin: 10px;
-}
-
-.btn-lg {
-  font-size: 1.2em;
-  padding: 17px 30px;
-  text-transform: uppercase;
-}
-
-.btn-wide {
-  text-align: center;
-  min-width: 180px;
-}
-
-.btn-primary {
-  background-color: $colorPrimary;
-  color: $colorWhite;
-}
-
-.btn-secondary {
-  background-color: $colorSecondary;
-  color: $colorBlack;
-}
-
-.btn-thirdary {
-  border: 1px solid $colorThirdary;
-  color: $colorThirdary;
-  background: none;
-}
-
-.position-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%,-50%);
-}
-
 .excerpt {
-  font-family: "latohairline";
+  font-family: 'latohairline';
   font-style: italic;
   font-size: 1.2em;
   max-width: 90%;
@@ -130,37 +13,7 @@ h4 {
   }
 }
 
-.text-align-center {
-  text-align: center;
-}
-
-.relative {
-  position: relative;
-}
-
-.stick-bottom {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
-.margin-bottom-standard {
-  margin-bottom: 20px;
-}
-
-.margin-bottom-none {
-  margin-bottom: 0 !important;
-}
-
-.padding-standard {
-  padding: 20px;
-}
-
-//
-// ---------------------------------- [HOME] ----------------------------------
-//
-
-.home #logo {
+.headBar .logo {
   display: block;
   width: 150px;
   position: fixed;
@@ -169,91 +22,18 @@ h4 {
   transform: translate(-50%, -50%);
 }
 
-#startBtn {
-  margin-bottom: 40px;
-}
 
 //
-// ---------------------------------- [LATERAL MENU] ----------------------------------
+// ---------------------------------- [HOME] ----------------------------------
 //
+section.home {
 
-body.sideMenu-active {
-  transform: translate3d($sideMenuWidth, 0, 0);
-}
-
-#sideMenu {
-  position: fixed;
-  top: 0;
-  left: -$sideMenuWidth;
-  width: $sideMenuWidth;
-  height: 100%;
-  background: $colorDarkest;
-  box-shadow: -3px 0px 0px rgba(0,0,0,.3) inset;
-  box-sizing: border-box;
-}
-
-#sideMenu h4 {
-  font-size: 1em;
-  margin-bottom: 15px;
-  
-  &:after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 4px;
-    background-color: $colorSecondary;
-    margin-top: 15px;
+  // start btn
+  .start-btn {
+    margin-bottom: 40px;
   }
 }
 
-#arbo li a {
-  padding: 15px 0px;
-  padding-left: 20px;
-  display: block;
-  background-color: #1E2544;
-  border-top-right-radius: 2em;
-  border-bottom-right-radius: 2em;
-  margin: 10px 0px;
-  margin-right: 40px;
-  color: $colorWhite;
-}
-
-#arbo li:last-child a {
-  border-bottom: 0;
-}
-
-#socialLinks li {
-  padding: 10px;
-  padding-left: 0;
-  
-  a {
-    color: $colorSecondary;
-    
-    span {
-      color: $colorPrimary;
-      margin-right: 10px;
-      width: 30px;
-      display: inline-block;
-    }
-  }
-}
-
-.overlayGlobal {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,.5);
-  z-index: 2;
-  opacity: 0;
-  transition: all 250ms;
-  visibility: hidden;
-}
-
-.sideMenu-active .overlayGlobal {
-  visibility: visible;
-  opacity: 1;
-}
 
 //
 // ---------------------------------- [FOOTER BAR] ----------------------------------

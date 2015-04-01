@@ -9,8 +9,10 @@ body {
 }
 
 body {
-  background: #fff;
-  overflow: hidden;
+  background: $colorWhite;
+  color: $colorWhite;
+  font-family: 'latoregular', sans-serif;
+  transition: transform 250ms;
   @include font-smoothing();
 }
 
@@ -27,6 +29,122 @@ body {
 //
 // -------------------------------- [CONTAINER] --------------------------------
 //
-.main {
+canvas,
+main {
   position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  z-index: 0;
+}
+
+main {
+  z-index: 1;
+  background: rgba(20,26,51,.9);
+}
+
+
+//
+// ---------------------------------- [UTILS] ----------------------------------
+//
+p {
+  font-size: .8em;
+}
+
+a {
+  color: $colorPrimary;
+  text-decoration: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-transform: uppercase;
+  font-family: 'latobold', sans-serif;
+}
+
+h4 {
+  color: $colorThirdary;
+  font-size: .8em;
+}
+
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.stick-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.margin-bottom-standard {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-none {
+  margin-bottom: 0 !important;
+}
+
+.padding-standard {
+  padding: 20px;
+}
+
+
+//
+// ----------------------------------- [BTN] -----------------------------------
+//
+.btn {
+  background: $colorWhite;
+  color: $colorBlack;
+  border-radius: 2em;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.btn-lg {
+  font-size: 1.2em;
+  padding: 17px 30px;
+  text-transform: uppercase;
+}
+
+.btn-wide {
+  text-align: center;
+  min-width: 180px;
+}
+
+.btn-primary {
+  background-color: $colorPrimary;
+  color: $colorWhite;
+}
+
+.btn-secondary {
+  background-color: $colorSecondary;
+  color: $colorBlack;
+}
+
+.btn-thirdary {
+  border: 1px solid $colorThirdary;
+  color: $colorThirdary;
+  background: none;
 }
