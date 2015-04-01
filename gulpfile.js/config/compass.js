@@ -2,7 +2,7 @@ var config = require('./');
 
 module.exports = {
     autoprefixer: { browsers: ['last 2 version'] },
-    src: config.sourceAssets + '/stylesheets/**/*.{sass,scss}',
+    src: config.sourceAssets + '/stylesheets/**/main.{sass,scss}',
     dest: config.publicAssets + '/stylesheets',
     settings: {
         css: config.publicAssets + '/stylesheets',
