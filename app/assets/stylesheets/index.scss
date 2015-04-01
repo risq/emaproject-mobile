@@ -5,6 +5,7 @@
 body {
   color: $colorWhite; 
   font-family: "latoregular", sans-serif;
+  transition: transform 250ms;
 }
 
 canvas, #container {
@@ -21,7 +22,7 @@ canvas {
 
 #container {
   z-index: 1;
-  background: rgba(40,47,77,.9);
+  background: rgba(20,26,51,.9);
 }
 
 //
@@ -36,6 +37,7 @@ canvas {
   height: 60px;
   box-sizing: border-box;
   padding: 20px;
+  z-index: 3;
 }
 
 .hamburger {
@@ -128,8 +130,30 @@ h4 {
   }
 }
 
+.text-align-center {
+  text-align: center;
+}
+
+.relative {
+  position: relative;
+}
+
+.stick-bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 .margin-bottom-standard {
   margin-bottom: 20px;
+}
+
+.margin-bottom-none {
+  margin-bottom: 0 !important;
+}
+
+.padding-standard {
+  padding: 20px;
 }
 
 //
@@ -145,13 +169,6 @@ h4 {
   transform: translate(-50%, -50%);
 }
 
-#home .content {
-  text-align: center;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-}
-
 #startBtn {
   margin-bottom: 40px;
 }
@@ -160,14 +177,82 @@ h4 {
 // ---------------------------------- [LATERAL MENU] ----------------------------------
 //
 
+body.sideMenu-active {
+  transform: translate3d($sideMenuWidth, 0, 0);
+}
+
 #sideMenu {
   position: fixed;
   top: 0;
-  left: -200px;
-  width: 200px;
+  left: -$sideMenuWidth;
+  width: $sideMenuWidth;
   height: 100%;
-  background: #2C2C2C;
-  transition: transform 250ms;
+  background: $colorDarkest;
+  box-shadow: -3px 0px 0px rgba(0,0,0,.3) inset;
+  box-sizing: border-box;
+}
+
+#sideMenu h4 {
+  font-size: 1em;
+  margin-bottom: 15px;
+  
+  &:after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background-color: $colorSecondary;
+    margin-top: 15px;
+  }
+}
+
+#arbo li a {
+  padding: 15px 0px;
+  padding-left: 20px;
+  display: block;
+  background-color: #1E2544;
+  border-top-right-radius: 2em;
+  border-bottom-right-radius: 2em;
+  margin: 10px 0px;
+  margin-right: 40px;
+  color: $colorWhite;
+}
+
+#arbo li:last-child a {
+  border-bottom: 0;
+}
+
+#socialLinks li {
+  padding: 10px;
+  padding-left: 0;
+  
+  a {
+    color: $colorSecondary;
+    
+    span {
+      color: $colorPrimary;
+      margin-right: 10px;
+      width: 30px;
+      display: inline-block;
+    }
+  }
+}
+
+.overlayGlobal {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.5);
+  z-index: 2;
+  opacity: 0;
+  transition: all 250ms;
+  visibility: hidden;
+}
+
+.sideMenu-active .overlayGlobal {
+  visibility: visible;
+  opacity: 1;
 }
 
 //
