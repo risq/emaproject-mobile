@@ -19,7 +19,8 @@ module.exports = function(env) {
       publicPath: publicPath
     },
 
-    plugins: [],
+    plugins: [
+    ],
 
     resolve: {
       extensions: ['', '.js']
