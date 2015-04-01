@@ -8,6 +8,7 @@ module.exports = {
     settings: {
         css: config.publicAssets + '/stylesheets',
         sass: config.sourceAssets + '/stylesheets',
-        image: config.publicAssets + '/images'
+        image: config.publicAssets + '/images',
+        font: config.publicAssets + '/fonts'
     }
 };

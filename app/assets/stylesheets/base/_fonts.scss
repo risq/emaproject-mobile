@@ -1,11 +1,41 @@
 //
 // ---------------------------------- [FONTS] ----------------------------------
 //
-//@include font-face("name",
-//    font-files(
-//        "file-webfont.eot",
-//        "file-webfont.woff",
-//        "file-webfont.ttf",
-//        "file-webfont.svg"
-//    )
-//);
+@include font-face("Gotham-Bold",
+    font-files(
+        "Gotham-Bold.eot",
+        "Gotham-Bold.woff",
+        "Gotham-Bold.ttf",
+        "Gotham-Bold.svg"
+    )
+);
+
+@include font-face("latobold",
+    font-files(
+        "Lato-Bold-webfont.eot",
+        "Lato-Bold-webfont.woff",
+        "Lato-Bold-webfont.woff2",
+        "Lato-Bold-webfont.ttf",
+        "Lato-Bold-webfont.svg#latobold"
+    )
+);
+
+@include font-face("latoregular",
+    font-files(
+        "Lato-Regular-webfont.eot",
+        "Lato-Regular-webfont.woff",
+        "Lato-Regular-webfont.woff2",
+        "Lato-Regular-webfont.ttf",
+        "Lato-Regular-webfont.svg#latoregular"
+    )
+);
+
+@include font-face("latohairline",
+    font-files(
+        "Lato-Hairline-webfont.eot",
+        "Lato-Hairline-webfont.woff",
+        "Lato-Hairline-webfont.woff2",
+        "Lato-Hairline-webfont.ttf",
+        "Lato-Hairline-webfont.svg#latohairline"
+    )
+);
