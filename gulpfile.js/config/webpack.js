@@ -10,8 +10,7 @@ module.exports = function(env) {
 
   var webpackConfig = {
     entry: {
-      page1: [jsSrc + 'page1.js'],
-      page2: [jsSrc + 'page2.js']
+      app: [jsSrc + 'app.js']
     },
 
     output: {
@@ -42,7 +41,7 @@ module.exports = function(env) {
     webpackConfig.plugins.push(
       new webpack.optimize.CommonsChunkPlugin({
         name: 'shared',
-        filename: env === 'production' ? '[name]-[hash].js' : '[name].js',
+        filename: env === 'production' ? '[name]-[hash].js' : '[name].js'
       })
     )
   }
