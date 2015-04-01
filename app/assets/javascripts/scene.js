@@ -23,7 +23,7 @@ let bars = {
 
 let initDate;
 
-const nbBars = 256; 
+const nbBars = 96; 
  
 function init () {
 
@@ -39,8 +39,8 @@ function init () {
 
 	scene = new THREE.Scene();
 	
-	camera = new THREE.PerspectiveCamera( 45, width/height, 0.1, 10000 );
-	camera.position.z = 5;
+	camera = new THREE.PerspectiveCamera( 60, width/height, 0.1, 10000 );
+	camera.position.z = 2.5;
 
 	light = new THREE.DirectionalLight( 0xffffff ); // soft white light
 	light.position.set( 0, 0, 2 );
@@ -83,15 +83,15 @@ function update () {
 	let sin3 = Math.sin(time * 0.001 + 4 * Math.PI / 3) * 0.1;
 
 	bars.t0.forEach(bar => {
-		bar.mesh.position.y = sin3 * 0.1;
+		bar.mesh.position.y = sin3 * 0.4;
 		bar.mesh.position.z = sin1;
 	})
 	bars.t1.forEach(bar => {
-		bar.mesh.position.y = sin1 * 0.1;
+		bar.mesh.position.y = sin1 * 0.4;
 		bar.mesh.position.z = sin2;
 	})
 	bars.t2.forEach(bar => {
-		bar.mesh.position.y = sin2 * 0.1;
+		bar.mesh.position.y = sin2 * 0.4;
 		bar.mesh.position.z = sin3;
 	})
 
@@ -110,13 +110,13 @@ function generateBars () {
 
 	for ( let i = 0; i < nbBars; i++ ) {
 
-		randWidth =  Math.random() / 30;
-		randHeight =  Math.random() * 5;
-		randX = (randomInt(0, 560) - 280 ) / 100;
-		randType = randomInt(0, 2);
-		randOpacity = randomInt(7, 10) * 0.1;
+		randWidth =  0.01 + Math.random() / 30;
+		randHeight =  0.5 + Math.random() * 3;
+		randX = ( randomInt( 0, 200 ) - 100 ) / 100;
+		randType = randomInt( 0, 2 );
+		randOpacity = randomInt( 7, 10 ) * 0.1;
 
-		size = new THREE.Vector3( randWidth, randHeight, randWidth * 10 );
+		size = new THREE.Vector3( randWidth, randHeight, randWidth * 4 );
 		pos = new THREE.Vector3( randX, 0, 0 );
 
 		bar = new Bar( size, pos, randType, randOpacity );

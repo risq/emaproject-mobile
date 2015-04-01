@@ -7,7 +7,7 @@ var watch    = require('gulp-watch');
 
 gulp.task('watch', ['browserSync'], function() {
   watch(images.src, function() { gulp.start('images'); });
-  watch(compass.src, function() { gulp.start('compass'); });
+  watch(compass.files, function() { gulp.start('compass'); });
   watch(iconFont.src, function() { gulp.start('iconFont'); });
   watch(html.watch, function() { gulp.start('html'); });
 });
