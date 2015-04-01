@@ -12,22 +12,34 @@ let scene,
 	stats,
 	camera, 
 	renderer,
-	light,
-	barsContainer;
+	light;
 
 let bars = {
-	t0: [],
-	t1: [],
-	t2: []
+	t0: {
+		container: new THREE.Object3D(),
+		objects: []
+	},
+	t1: {
+		container: new THREE.Object3D(),
+		objects: []
+	},
+	t2: {
+		container: new THREE.Object3D(),
+		objects: []
+	}
 };
 
-let initDate;
+let initTime, currentTime;
+
+
+let startY, moveY = 0, movePos;
+
 
 const nbBars = 64; 
  
 function init () {
 
-	initDate = Date.now();
+	initTime = Date.now();
 
 	stats = new Stats();
 
@@ -55,10 +67,13 @@ function init () {
 
 	document.body.appendChild( renderer.domElement );
 
-	barsContainer = new THREE.Object3D();
-	scene.add( barsContainer );
+	scene.add( bars.t0.container );
+	scene.add( bars.t1.container );
+	scene.add( bars.t2.container );
 
 	generateBars();
+
+	initEvents();
 
 	animate();
 
@@ -79,28 +94,42 @@ function update () {
 
 	// camera.rotation.z += 0.001;
 
-	let time = Date.now() - initDate;
+	let lastTime = currentTime;
+	currentTime = Date.now() - initTime;
 
-	let sin1 = Math.sin(time * 0.001) * 0.1;
-	let sin2 = Math.sin(time * 0.001 + 2 * Math.PI / 3) * 0.1;
-	let sin3 = Math.sin(time * 0.001 + 4 * Math.PI / 3) * 0.1;
+	let deltaTime = (currentTime - lastTime) * 0.005;
 
-	bars.t0.forEach(bar => {
+	let time = Date.now() - initTime;
+
+	let sin1 = Math.sin(currentTime * 0.001) * 0.1;
+	let sin2 = Math.sin(currentTime * 0.001 + 2 * Math.PI / 3) * 0.1;
+	let sin3 = Math.sin(currentTime * 0.001 + 4 * Math.PI / 3) * 0.1;
+
+	bars.t0.objects.forEach(bar => {
 		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin1 * bar.randConst;
 		bar.mesh.rotation.x = sin1;
-	})
-	bars.t1.forEach(bar => {
+	});
+	bars.t1.objects.forEach(bar => {
 		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin2 * bar.randConst;
 		bar.mesh.rotation.x = sin2;
-	})
-	bars.t2.forEach(bar => {
+	});
+	bars.t2.objects.forEach(bar => {
 		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin3 * bar.randConst;
 		bar.mesh.rotation.x = sin3;
-	})
+	});
 
+	if ( movePos > 0.5 ) {
+
+		startY = moveY;
+		moveY = 0;
+		movePos = 0;
+
+		console.log( 'slide' );
+
+	}
 }
  
 function render () {
@@ -127,15 +156,41 @@ function generateBars () {
 
 		bar = new Bar( size, pos, randType, randOpacity );
 
-		bars['t' + randType].push(bar);
+		bars['t' + randType].objects.push(bar);
 		
-		scene.add(bar.mesh);
+		bars['t' + randType].container.add(bar.mesh);
 
 	}
 
-	console.log(bars);
+}
 
+function initEvents () {
 
+	renderer.domElement.addEventListener("touchstart", onTouchStart, false);
+	renderer.domElement.addEventListener("touchmove", onTouchMove, false);
+	renderer.domElement.addEventListener("touchend", onTouchEnd, false);
+
+}
+
+function onTouchStart ( event ) {
+
+	console.log( "TOUCHSTART", event.touches[0].screenX );
+
+	startY = event.touches[0].screenX;
+
+}
+
+function onTouchMove ( event ) {
+
+	moveY = startY - event.touches[0].screenX;
+	movePos = -moveY / width;
+	console.log(moveY);
+
+}
+
+function onTouchEnd ( event ) {
+
+	moveY = 0;
 
 }
 
