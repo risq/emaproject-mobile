@@ -1,3 +1,195 @@
 //
 // ---------------------------------- [INDEX] ----------------------------------
 //
+
+body {
+  color: $colorWhite; 
+  font-family: "latoregular", sans-serif;
+}
+
+canvas, #container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+canvas {
+  z-index: 0;
+}
+
+#container {
+  z-index: 1;
+  background: rgba(40,47,77,.9);
+}
+
+//
+// ---------------------------------- [HEADER] ----------------------------------
+//
+
+.headBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.hamburger {
+  float: left;
+}
+
+.infos {
+  float: right;
+}
+
+//
+// ---------------------------------- [UTIL] ----------------------------------
+//
+
+p {
+  font-size: .8em;
+}
+
+a {
+  color: $colorPrimary;
+  text-decoration: none;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  text-transform: uppercase;
+  font-family: 'latobold', sans-serif;
+}
+
+h4 {
+  color: $colorThirdary;
+  font-size: .8em;
+}
+
+.btn {
+  background: $colorWhite;
+  color: $colorBlack;
+  border-radius: 2em;
+  white-space: nowrap;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px;
+}
+
+.btn-lg {
+  font-size: 1.2em;
+  padding: 17px 30px;
+  text-transform: uppercase;
+}
+
+.btn-wide {
+  text-align: center;
+  min-width: 180px;
+}
+
+.btn-primary {
+  background-color: $colorPrimary;
+  color: $colorWhite;
+}
+
+.btn-secondary {
+  background-color: $colorSecondary;
+  color: $colorBlack;
+}
+
+.btn-thirdary {
+  border: 1px solid $colorThirdary;
+  color: $colorThirdary;
+  background: none;
+}
+
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.excerpt {
+  font-family: "latohairline";
+  font-style: italic;
+  font-size: 1.2em;
+  max-width: 90%;
+  margin: auto;
+  display: none;
+}
+
+@media screen and (min-height: 540px) {
+  .excerpt {
+    display: block;
+  }
+}
+
+.margin-bottom-standard {
+  margin-bottom: 20px;
+}
+
+//
+// ---------------------------------- [HOME] ----------------------------------
+//
+
+.home #logo {
+  display: block;
+  width: 150px;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#home .content {
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+#startBtn {
+  margin-bottom: 40px;
+}
+
+//
+// ---------------------------------- [LATERAL MENU] ----------------------------------
+//
+
+#sideMenu {
+  position: fixed;
+  top: 0;
+  left: -200px;
+  width: 200px;
+  height: 100%;
+  background: #2C2C2C;
+  transition: transform 250ms;
+}
+
+//
+// ---------------------------------- [FOOTER BAR] ----------------------------------
+//
+
+.footerBar {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.footerBar:before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 4px;
+  background: beige;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+}
