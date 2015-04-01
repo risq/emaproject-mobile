@@ -1,4 +1,4 @@
-var config = require('./')
+var config = require('./');
 
 module.exports = {
   name: 'Gulp Starter Icons',
@@ -14,4 +14,4 @@ module.exports = {
     appendCodepoints: true,
     normalize: false
   }
-}
+};
