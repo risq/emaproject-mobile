@@ -23,7 +23,7 @@ let bars = {
 
 let initDate;
 
-const nbBars = 96; 
+const nbBars = 64; 
  
 function init () {
 
@@ -51,6 +51,7 @@ function init () {
 	});
 
 	renderer.setSize( width, height );
+	renderer.setClearColor(0x111111);
 
 	document.body.appendChild( renderer.domElement );
 
@@ -76,6 +77,8 @@ function update () {
 
 	stats.update();
 
+	// camera.rotation.z += 0.001;
+
 	let time = Date.now() - initDate;
 
 	let sin1 = Math.sin(time * 0.001) * 0.1;
@@ -83,16 +86,19 @@ function update () {
 	let sin3 = Math.sin(time * 0.001 + 4 * Math.PI / 3) * 0.1;
 
 	bars.t0.forEach(bar => {
-		bar.mesh.position.y = sin3 * 0.4;
-		bar.mesh.position.z = sin1;
+		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
+		bar.mesh.position.z = sin1 * bar.randConst;
+		bar.mesh.rotation.x = sin1;
 	})
 	bars.t1.forEach(bar => {
-		bar.mesh.position.y = sin1 * 0.4;
-		bar.mesh.position.z = sin2;
+		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
+		bar.mesh.position.z = sin2 * bar.randConst;
+		bar.mesh.rotation.x = sin2;
 	})
 	bars.t2.forEach(bar => {
-		bar.mesh.position.y = sin2 * 0.4;
-		bar.mesh.position.z = sin3;
+		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
+		bar.mesh.position.z = sin3 * bar.randConst;
+		bar.mesh.rotation.x = sin3;
 	})
 
 }
@@ -110,13 +116,13 @@ function generateBars () {
 
 	for ( let i = 0; i < nbBars; i++ ) {
 
-		randWidth =  0.01 + Math.random() / 30;
-		randHeight =  0.5 + Math.random() * 3;
-		randX = ( randomInt( 0, 200 ) - 100 ) / 100;
+		randWidth =  0.01 + Math.random() / 20;
+		randHeight =  0.5 + Math.random() * 1;
+		randX = ( randomInt( 0, 100 ) - 50 ) / 90;
 		randType = randomInt( 0, 2 );
 		randOpacity = randomInt( 7, 10 ) * 0.1;
 
-		size = new THREE.Vector3( randWidth, randHeight, randWidth * 4 );
+		size = new THREE.Vector3( randWidth, randHeight, randWidth * 0.001 );
 		pos = new THREE.Vector3( randX, 0, 0 );
 
 		bar = new Bar( size, pos, randType, randOpacity );
