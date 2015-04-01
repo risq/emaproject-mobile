@@ -6,23 +6,25 @@ class Bar {
     constructor (size, pos, type, opacity) {
 
     	opacity = opacity || 1;
+    	
+    	this.randConst = Math.random() * 4;
     	this.type = type;
 
     	let material =  type === 0 ? new THREE.MeshPhongMaterial( { 
-    									color: 0x00ff00,
-    									emissive: 0x00ff00,
+    									color: 0x1B3D63,
+    									emissive: 0x1B3D63,
     									transparent: true,
     									opacity: opacity 
     								} ) :
     					type === 1 ? new THREE.MeshPhongMaterial( { 
-    									color: 0xff0000,
-    									emissive: 0xff0000,
+    									color: 0x0079FF,
+    									emissive: 0x0079FF,
     									transparent: true,
     									opacity: opacity 
     								} ) :
     							 	 new THREE.MeshPhongMaterial( { 
-    							 	 	color: 0x0000ff,
-    							 	 	emissive: 0x0000ff,
+    							 	 	color: 0xe9bc95,
+    							 	 	emissive: 0xe9bc95,
     							 	 	transparent: true,
     							 	 	opacity: opacity 
     							 	 } ) ;
