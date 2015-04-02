@@ -7,7 +7,7 @@ let $ = require('jquery');
 function init() {
 
     // fix scroll header
-    $('header .bg1').height($(window).height() + 60);
+    $('header .bg2').height($(window).height() + 60);
 }
 
 module.exports = {

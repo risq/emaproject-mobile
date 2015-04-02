@@ -151,7 +151,8 @@ section.dimension .content {
         height: 70px;
         margin: 0 5vw;
         display: inline-block;
-        border: 2px solid rgba(255, 255, 255, .3);
+        border: 2px solid $colorSecondary;
+        //border: 2px solid rgba(255, 255, 255, .3);
         border-radius: 50px;
         line-height: 74px;
         font-size: 1.2em;
