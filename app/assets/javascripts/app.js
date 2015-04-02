@@ -6,4 +6,9 @@ let scene = require('./scene');
 let uiManager = require('./UIManager');
 
 scene.init();
+
+setInterval(function() {
+	scene.highlightNext();
+}, 5000);
+
 uiManager.init();

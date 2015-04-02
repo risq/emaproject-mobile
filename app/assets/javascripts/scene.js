@@ -12,22 +12,35 @@ let scene,
 	stats,
 	camera, 
 	renderer,
-	light,
-	barsContainer;
+	light;
 
 let bars = {
-	t0: [],
-	t1: [],
-	t2: []
+	t0: {
+		container: new THREE.Object3D(),
+		objects: []
+	},
+	t1: {
+		container: new THREE.Object3D(),
+		objects: []
+	},
+	t2: {
+		container: new THREE.Object3D(),
+		objects: []
+	}
 };
 
-let initDate;
+let initTime, currentTime;
+
+let currentHighlighted = -1;
+
+let startY, moveY = 0, movePos;
+
 
 const nbBars = 64; 
  
 function init () {
 
-	initDate = Date.now();
+	initTime = Date.now();
 
 	stats = new Stats();
 
@@ -55,10 +68,17 @@ function init () {
 
 	document.body.appendChild( renderer.domElement );
 
-	barsContainer = new THREE.Object3D();
-	scene.add( barsContainer );
+	scene.add( bars.t0.container );
+	scene.add( bars.t1.container );
+	scene.add( bars.t2.container );
 
+
+	var texture = THREE.ImageUtils.loadTexture('/assets/image/map.png', {}, function () {
+		console.log('laoded');
+	});
 	generateBars();
+
+	initEvents();
 
 	animate();
 
@@ -76,30 +96,36 @@ function animate () {
 function update () {
 
 	stats.update();
+	TWEEN.update();
 
 	// camera.rotation.z += 0.001;
 
-	let time = Date.now() - initDate;
+	let lastTime = currentTime;
+	currentTime = Date.now() - initTime;
 
-	let sin1 = Math.sin(time * 0.001) * 0.1;
-	let sin2 = Math.sin(time * 0.001 + 2 * Math.PI / 3) * 0.1;
-	let sin3 = Math.sin(time * 0.001 + 4 * Math.PI / 3) * 0.1;
+	let deltaTime = (currentTime - lastTime) * 0.005;
 
-	bars.t0.forEach(bar => {
+	let time = Date.now() - initTime;
+
+	let sin1 = Math.sin(currentTime * 0.001) * 0.1;
+	let sin2 = Math.sin(currentTime * 0.001 + 2 * Math.PI / 3) * 0.1;
+	let sin3 = Math.sin(currentTime * 0.001 + 4 * Math.PI / 3) * 0.1;
+
+	bars.t0.objects.forEach(bar => {
 		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin1 * bar.randConst;
 		bar.mesh.rotation.x = sin1;
-	})
-	bars.t1.forEach(bar => {
+	});
+	bars.t1.objects.forEach(bar => {
 		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin2 * bar.randConst;
 		bar.mesh.rotation.x = sin2;
-	})
-	bars.t2.forEach(bar => {
+	});
+	bars.t2.objects.forEach(bar => {
 		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
 		bar.mesh.position.z = sin3 * bar.randConst;
 		bar.mesh.rotation.x = sin3;
-	})
+	});
 
 }
  
@@ -127,15 +153,102 @@ function generateBars () {
 
 		bar = new Bar( size, pos, randType, randOpacity );
 
-		bars['t' + randType].push(bar);
+		bars['t' + randType].objects.push(bar);
 		
-		scene.add(bar.mesh);
+		bars['t' + randType].container.add(bar.mesh);
 
 	}
 
-	console.log(bars);
+	
+
+}
+
+function highlightT( type ) {
+
+	if (currentHighlighted > -1) {
+
+		var unHighlight = currentHighlighted;
+
+		var tween = new TWEEN.Tween( { x: 100 } )
+	      .to( { x: 0 }, 750 )
+	      .easing( TWEEN.Easing.Quartic.InOut )
+	      .onUpdate( function () {
+	 
+	        bars['t' + unHighlight].objects.forEach(bar => {
+				bar.mesh.scale.x = 1 + this.x * 0.02 * bar.randConst;
+				bar.mesh.scale.y = 1 + this.x * 0.002 * bar.randConst;
+			});
+
+	        bars['t' + unHighlight].container.position.set(0, 0, this.x * 0.004);
+
+	      } )
+	      .start();
+
+	}
+
+	if (type !== currentHighlighted) {
+
+		currentHighlighted = type;
+
+		var tween = new TWEEN.Tween( { x: 0 } )
+	      .to( { x: 100 }, 750 )
+	      .easing( TWEEN.Easing.Quartic.InOut )
+	      .onUpdate( function () {
+	 
+	        bars['t' + type].objects.forEach(bar => {
+				bar.mesh.scale.x = 1 + this.x * 0.02 * bar.randConst;
+				bar.mesh.scale.y = 1 + this.x * 0.002 * bar.randConst;
+			});
+
+	        bars['t' + type].container.position.set(0, 0, this.x * 0.004);
+
+	      } )
+	      .start();
+	  }
+}
+
+function highlightNext () {
+
+	if (currentHighlighted === 2) {
+
+		highlightT( 0 );
+
+	} else {
+
+		highlightT( currentHighlighted + 1 );
+
+	}
+
+}
 
 
+function initEvents () {
+
+	renderer.domElement.addEventListener("touchstart", onTouchStart, false);
+	renderer.domElement.addEventListener("touchmove", onTouchMove, false);
+	renderer.domElement.addEventListener("touchend", onTouchEnd, false);
+
+}
+
+function onTouchStart ( event ) {
+
+	console.log( "TOUCHSTART", event.touches[0].screenX );
+
+	startY = event.touches[0].screenX;
+
+}
+
+function onTouchMove ( event ) {
+
+	moveY = startY - event.touches[0].screenX;
+	movePos = -moveY / width;
+	console.log(moveY);
+
+}
+
+function onTouchEnd ( event ) {
+
+	moveY = 0;
 
 }
 
@@ -148,6 +261,7 @@ function randomInt ( min, max ) {
 
 module.exports = {
 
-	init: init
+	init: init,
+	highlightNext: highlightNext
 
 }

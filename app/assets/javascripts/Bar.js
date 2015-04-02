@@ -34,6 +34,8 @@ class Bar {
 
     	let geometry = new THREE.BoxGeometry( size.x, size.y, size.z );
 
+    	// changeUVs(geometry, )
+
 		this.mesh = new THREE.Mesh( geometry, material );
 		this.setPos( pos );
 
@@ -44,6 +46,25 @@ class Bar {
     	this.mesh.position.copy(pos);
 
     }
+
+    changeUVs( geometry, unitx, unity, offsetx, offsety ) {
+
+		var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
+
+		for ( var i = 0; i < faceVertexUvs.length; i ++ ) {
+
+			var uvs = faceVertexUvs[ i ];
+
+			for ( var j = 0; j < uvs.length; j ++ ) {
+
+				var uv = uvs[ j ];
+
+				uv.x = ( uv.x + offsetx ) * unitx;
+				uv.y = ( uv.y + offsety ) * unity;
+
+			}
+		}
+	}
     
 }
 
