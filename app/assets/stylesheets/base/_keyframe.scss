@@ -1,19 +1,77 @@
 //
 // -------------------------------- [KEYFRAMES] --------------------------------
 //
-//@-webkit-keyframes name {
-//  0%   { ... }
-//  100%   { ... }
-//}
-//@-moz-keyframes name {
-//  0%   { ... }
-//  100%   { ... }
-//}
-//@-o-keyframes name {
-//  0%   { ... }
-//  100%   { ... }
-//}
-//@keyframes name {
-//  0%   { ... }
-//  100%   { ... }
-//}
+@-webkit-keyframes slider {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  16.666666666666668%,
+  33.333333333333336% {
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@-moz-keyframes slider {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  16.666666666666668%,
+  33.333333333333336% {
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@-ms-keyframes slider {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  16.666666666666668%,
+  33.333333333333336% {
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@-o-keyframes slider {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  16.666666666666668%,
+  33.333333333333336% {
+    opacity: 1;
+    z-index: 2;
+  }
+}
+
+@keyframes slider {
+  0%,
+  50%,
+  100% {
+    opacity: 0;
+    z-index: 2;
+  }
+
+  16.666666666666668%,
+  33.333333333333336% {
+    opacity: 1;
+    z-index: 2;
+  }
+}

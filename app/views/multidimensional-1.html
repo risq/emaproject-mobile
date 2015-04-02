@@ -1,14 +1,28 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>EMA Project Experience</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height" />
+    <link rel="stylesheet" href="assets/stylesheets/main.css">
+</head>
+<body class="home">
+<main>
+
+
+
+
 <section class="multidimensional">
     <header class="bg1">
         <h1>L'ère glacière</h1>
         <div class="infos">
-            <div class="circle"></div>
-            <div class="distance">2354435654547km</div>
-            <div class="separator">—</div>
-            <div class="soon">soon</div>
+            <span class="circle">•</span>
+            <span class="distance">2354435654547km</span>
+            <span class="separator">—</span>
+            <span class="soon">soon</span>
         </div>
+        <div class="color-filter"></div>
     </header>
-
 
     <section class="informations">
         <div class="bloc-info">
@@ -25,8 +39,8 @@
         </div>
 
         <div class="video">
-            <video width="400" height="222" controls="controls">
-                <source src="video.mp4" type="video/mp4" />
+            <video width="1920" height="1080" poster="assets/images/preview-video.jpg" controls preload>
+                <source src="http://192.168.31.24:8888/ema/video.mp4" type="video/mp4" />
                 Ici l'alternative à la vidéo : un lien de téléchargement, un message, etc.
             </video>
             <p class="legend">periculorum occultas  perquam sagax.</p>
@@ -37,41 +51,70 @@
         </div>
 
         <div class="data-visualization">
-
+            <div class="content">
+                <div class="circle first" data-anim="base left">16</div>
+                <div class="circle" data-anim="base right">230</div>
+                <div class="circle last" data-anim="base right">3</div>
+                <ul class="title">
+                    <li>perduceret</li>
+                    <li>perduceret</li>
+                    <li>perduceret</li>
+                </ul>
+            </div>
         </div>
 
         <div class="bloc-info">
             <p>Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax. is in <b>Brittanniam missus</b> ut militares quosdam perduceret ausos conspirasse <a href="#">Magnentio</a>, cum reniti non possent.</p>
         </div>
 
-        <div class="slider">
-
+        <div class="slider autoplay">
+            <ul>
+                <div><img src="assets/images/preview-video.jpg" /></div>
+                <li class="slide1">
+                    <img src="assets/images/d1-footer.jpg" />
+                </li>
+                <li class="slide2">
+                    <img src="assets/images/d1-header.jpg" />
+                </li>
+                <li class="slide3">
+                    <img src="assets/images/d1-header.jpg" />
+                </li>
+            </ul>
         </div>
 
         <div class="bloc-info">
             <p>Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax. is in <b>Brittanniam missus</b> ut militares quosdam perduceret ausos conspirasse <a href="#">Magnentio</a>, cum reniti non possent.</p>
-            <p>Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax. is in <b>Brittanniam missus</b> ut militares quosdam perduceret ausos conspirasse <a href="#">Magnentio</a>, cum reniti non possent.</p>
+            <p class="margin">Inter quos Paulus eminebat notarius ortus in Hispania, glabro quidam sub vultu latens, odorandi vias periculorum occultas perquam sagax. is in <b>Brittanniam missus</b> ut militares quosdam perduceret ausos conspirasse <a href="#">Magnentio</a>, cum reniti non possent.</p>
         </div>
     </section>
 
 
     <footer>
-        <div class="share">
-            <h4>Share this amazing trip</h4>
-            <div class="socialBtn">
-                <ul>
-                    <li class="twitter"></li>
-                    <li class="facebook"></li>
-                </ul>
+        <div class="content">
+            <div class="share">
+                <h4>Share this amazing trip</h4>
+                <div class="socialBtn">
+                    <ul>
+                        <li class="icon-twitter"></li>
+                        <li class="icon-facebook"></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="contest">
+                <h4>Win a trip !</h4>
+                <a class="btn btn-secondary btn-contest" href="#">Check the contest</a>
             </div>
         </div>
-        <div class="contest">
-            <h4>Win a trip !</h4>
-            <a class="btn btn-secondary" href="#"></a>
-        </div>
-        <div class="ads">
+        <div class="bottom bg1">
             <p>Découvrir une autre dimension</p>
             <h3>Le monde inversé</h3>
         </div>
     </footer>
 </section>
+
+</main>
+
+<script src="/assets/javascripts/shared.js"></script>
+<script src="/assets/javascripts/app.js"></script>
+</body>
+</html>
