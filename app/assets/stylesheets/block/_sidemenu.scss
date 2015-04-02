@@ -79,8 +79,10 @@ aside.sidemenu {
       span {
         color: $colorPrimary;
         margin-right: 10px;
-        width: 30px;
+        width: 20px;
         display: inline-block;
+        text-align: center;
+        vertical-align: middle;
       }
     }
   }

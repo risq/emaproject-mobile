@@ -9,9 +9,9 @@
 <body class="home">
     <main>
         <header class="headBar">
-            <div class="primary-header-btn menuToggler">Menu</div>
-            <div class="secondary-header-btn infos">Informations</div>
-
+            <div class="primary-header-btn menuToggler icon-menu"><span class="hidden">Menu</span></div>
+            <div class="secondary-header-btn infos icon-infos"><span class="hidden">Informations</span></div>
+            <span class="clear"></span>
             <img class="logo" src="assets/images/logoblanc.png" alt=""/>
         </header>
         
@@ -22,16 +22,16 @@
                 <nav>
                     <h4 class="padding-standard margin-bottom-none">Menu</h4>
                     <ul class="arbo">
-                        <li><a href="#">• About EMA</a></li>
-                        <li><a href="#">• Website</a></li>
-                        <li><a href="#">• Contest</a></li>
+                        <li><a href="#" class="dimensionLauncher fromHome" data-dimension="about">• About EMA</a></li>
+                        <li><a href="http://www.emaproject.org/">• Website</a></li>
+                        <li><a href="#" class="dimensionLauncher fromHome" data-dimension="contest">• Contest</a></li>
                     </ul>
                     
                     <div class="padding-standard stick-bottom">
                         <h4>Follow us</h4>
                         <ul class="socialLinks">
-                            <li><a href="#"><span>FB</span>@ema_project</a></li>
-                            <li><a href="#"><span>TW</span>fb/emaproject</a></li>
+                            <li><a href="#"><span class="icon-facebook"></span>@ema_project</a></li>
+                            <li><a href="#"><span class="icon-twitter"></span>fb/emaproject</a></li>
                         </ul>
                     </div>
                 </nav>

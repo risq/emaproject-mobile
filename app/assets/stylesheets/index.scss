@@ -23,10 +23,14 @@
   transition: all 100ms;
 }
 
-.page .headBar .logo {
-  top: 0;
-  width: 40px;
-  transform: translate(-50%, 15px);
+.page .headBar { 
+  background: rgba(20,26,51,.9);
+  
+  .logo {
+    top: 0;
+    width: 40px;
+    transform: translate(-50%, 20px);
+  }
 }
 
 

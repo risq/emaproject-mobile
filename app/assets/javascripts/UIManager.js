@@ -88,6 +88,7 @@ function goBack() {
             goToSelector();
             break;
         case "selector":
+        case "page":
             goToHome();
             break;
     }
@@ -102,7 +103,8 @@ function goToHome() {
     $body.toggleClass('page', false);
     $body.toggleClass('home', true);
     status = "home";
-    $primaryHeaderBtn.html("Menu");
+    $primaryHeaderBtn.toggleClass('icon-menu', true);
+    $primaryHeaderBtn.toggleClass('icon-back', false);
 }
 
 function goToSelector() {
@@ -112,15 +114,28 @@ function goToSelector() {
     $body.toggleClass('page', true);
     $body.toggleClass('home',false);
     status = "selector";
-    $primaryHeaderBtn.html("Back");
+    $primaryHeaderBtn.toggleClass('icon-menu', false);
+    $primaryHeaderBtn.toggleClass('icon-back', true);
 }
 
-function goToDimension() {
+function goToDimension(e) {
+    e.preventDefault();
+    toggleOffAsides();
     $homeBlock.hide();
     $selectorBlock.hide();
     $dimensionBlock.show();
+    $body.toggleClass('page', true);
+    $body.toggleClass('home',false);
     pageManager.changePage($(this).data("dimension"));
-    status = "dimension";
+    
+    if($(this).hasClass('fromHome')) {
+        status = "page";
+    } else {
+        status = "dimension";
+    }
+
+    $primaryHeaderBtn.toggleClass('icon-menu', false);
+    $primaryHeaderBtn.toggleClass('icon-back', true);
 }
 
 // Export

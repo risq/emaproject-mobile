@@ -12,6 +12,6 @@ module.exports = {
   options: {
     fontName: 'icons',
     appendCodepoints: true,
-    normalize: false
+    normalize: true
   }
 };
