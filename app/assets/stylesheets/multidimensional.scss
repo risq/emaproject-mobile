@@ -1,8 +1,10 @@
 //
 // ---------------------------- [MULTIDIMENSIONAL] -----------------------------
 //
-section.dimension .content {
+section.dimension > .content {
   overflow: hidden;
+  min-height: 100vh;
+  background-color: #fff;
 
   // --- HEADER ---
   header {
@@ -78,6 +80,10 @@ section.dimension .content {
     background: $colorWhite;
     z-index: 300;
     transform: translate3d(0,0,0);
+    
+    &.withoutHeader {
+      margin-top: 60px;
+    }
 
     .bloc-info {
       padding: 7vh 10vw;

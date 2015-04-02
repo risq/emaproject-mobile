@@ -98,6 +98,10 @@ function toggleModalContest(e) {
         tl.to(this, 0.2, {color: "initial"});
         $body.toggleClass('modalContestOpened', false);
         modalContestOpen=false;
+        
+        setTimeout(function() {
+            $('#modalContest').remove();
+        }, 2000);
     } else {
         tl.to(this, 0.2, {color: "transparent"});
         tl.to(this, 0.4, {padding: 0, width: "30px", height: "30px", "min-width": 0});
