@@ -2,15 +2,14 @@
  * Created by jerek0 on 02/04/2015.
  */
 
+let $ = require('jquery');
+
 function init() {
-    console.log('multidimensionnal-1 script launched');
 
-    fixScrollHeader();
+    // fix scroll header
+    $('header .bg1').height($(window).height() + 60);
 }
 
-function fixScrollHeader() {
-    console.log('je suis ici');
-}
 
 module.exports = {
     init: init

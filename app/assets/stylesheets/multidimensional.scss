@@ -21,19 +21,19 @@ section.dimension .content {
       background-color: rgba(20, 26, 51, .5);
     }
 
-    &.bg1 {
-      background: url('../images/d1-header.jpg') center center;
-      background-size: cover; // TODO : fix js
+    .bg1 {
+      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    &.bg2 {
-      background: url('../images/d1-header.jpg') center center;
-      background-size: cover; // TODO : fix js
+    .bg2 {
+      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
-    &.bg3 {
-      background: url('../images/d1-header.jpg') center center;
-      background-size: cover; // TODO : fix js
+    .bg3 {
+      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
 
     h1 {
@@ -282,17 +282,17 @@ section.dimension .content {
 
       &.bg1 {
         background: url('../images/d1-footer.jpg') center center;
-        background-size: cover; // TODO : fix js
+        background-size: cover;
       }
 
       &.bg2 {
         background: url('../images/d1-footer.jpg') center center;
-        background-size: cover; // TODO : fix js
+        background-size: cover;
       }
 
       &.bg3 {
         background: url('../images/d1-footer.jpg') center center;
-        background-size: cover; // TODO : fix js
+        background-size: cover;
       }
     }
   }

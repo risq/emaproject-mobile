@@ -1,9 +1,8 @@
 let THREE = require('n3d-threejs');
-let TWEEN = require('tween');
+let TWEEN = require('tween.js');
 let Stats = require('stats-js');
 
 let Bar = require('./Bar');
-
 
 let width = window.innerWidth;
 let height = window.innerHeight;
@@ -12,7 +11,9 @@ let scene,
 	stats,
 	camera, 
 	renderer,
-	light;
+	light,
+	rootContainer,
+	texture;
 
 let bars = {
 	t0: {
@@ -33,7 +34,7 @@ let initTime, currentTime;
 
 let currentHighlighted = -1;
 
-let startY, moveY = 0, movePos;
+let startX, moveX;
 
 
 const nbBars = 64; 
@@ -68,15 +69,18 @@ function init () {
 
 	document.body.appendChild( renderer.domElement );
 
-	scene.add( bars.t0.container );
-	scene.add( bars.t1.container );
-	scene.add( bars.t2.container );
+	rootContainer = new THREE.Object3D();
+
+	rootContainer.add( bars.t0.container );
+	rootContainer.add( bars.t1.container );
+	rootContainer.add( bars.t2.container );
+	
+	scene.add( rootContainer );
 
 
-	var texture = THREE.ImageUtils.loadTexture('/assets/image/map.png', {}, function () {
-		console.log('laoded');
+	texture = THREE.ImageUtils.loadTexture('/assets/images/texture.png', {}, function () {
+		generateBars();
 	});
-	generateBars();
 
 	initEvents();
 
@@ -113,19 +117,33 @@ function update () {
 
 	bars.t0.objects.forEach(bar => {
 		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin1 * bar.randConst;
-		bar.mesh.rotation.x = sin1;
+		// bar.mesh.position.z = sin1 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin1 * 0.01;
 	});
 	bars.t1.objects.forEach(bar => {
 		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin2 * bar.randConst;
-		bar.mesh.rotation.x = sin2;
+		// bar.mesh.position.z = sin2 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin2 * 0.01;
 	});
 	bars.t2.objects.forEach(bar => {
 		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin3 * bar.randConst;
-		bar.mesh.rotation.x = sin3;
+		// bar.mesh.position.z = sin3 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin3 * 0.01;
 	});
+
+	if ( moveX && moveX > -1 ) {
+
+		rootContainer.rotation.set(0, - moveX , 0 );
+
+	} else if ( moveX === -1 )  {
+
+		var tween = new TWEEN.Tween( rootContainer.rotation, { y: rootContainer.rotation.y } )
+			.to( { y: 0 }, 400 )
+			.easing( TWEEN.Easing.Quartic.InOut )
+			.start();
+
+		moveX = null;
+	}
 
 }
  
@@ -137,7 +155,7 @@ function render () {
 
 function generateBars () {
 	
-	let randWidth, randHeight, randType, randX, randOpacity, size, pos, bar;
+	let randWidth, randHeight, randType, randX, randZ, randOpacity, size, pos, bar;
 
 
 	for ( let i = 0; i < nbBars; i++ ) {
@@ -145,13 +163,14 @@ function generateBars () {
 		randWidth =  0.01 + Math.random() / 20;
 		randHeight =  0.5 + Math.random() * 1;
 		randX = ( randomInt( 0, 100 ) - 50 ) / 90;
+		randZ = Math.random() - 0.5;
 		randType = randomInt( 0, 2 );
 		randOpacity = randomInt( 7, 10 ) * 0.1;
 
 		size = new THREE.Vector3( randWidth, randHeight, randWidth * 0.001 );
-		pos = new THREE.Vector3( randX, 0, 0 );
+		pos = new THREE.Vector3( randX, 0, randZ );
 
-		bar = new Bar( size, pos, randType, randOpacity );
+		bar = new Bar( size, pos, randType, randOpacity, texture );
 
 		bars['t' + randType].objects.push(bar);
 		
@@ -164,6 +183,8 @@ function generateBars () {
 }
 
 function highlightT( type ) {
+
+	// console.log(type)
 
 	if (currentHighlighted > -1) {
 
@@ -221,6 +242,20 @@ function highlightNext () {
 
 }
 
+function highlightPrev () {
+
+	if (currentHighlighted <= 0) {
+
+		highlightT( 2 );
+
+	} else {
+
+		highlightT( currentHighlighted - 1 );
+
+	}
+
+}
+
 
 function initEvents () {
 
@@ -232,23 +267,28 @@ function initEvents () {
 
 function onTouchStart ( event ) {
 
-	console.log( "TOUCHSTART", event.touches[0].screenX );
-
-	startY = event.touches[0].screenX;
+	startX = event.touches[0].clientX;
 
 }
 
 function onTouchMove ( event ) {
 
-	moveY = startY - event.touches[0].screenX;
-	movePos = -moveY / width;
-	console.log(moveY);
+	moveX = (startX - event.touches[0].clientX) / width;
 
 }
 
 function onTouchEnd ( event ) {
 
-	moveY = 0;
+	if ( moveX > 0.2 ) {
+
+		highlightNext();
+
+	} else if ( moveX < -0.2 ) {
+
+		highlightPrev();
+
+	}
+	moveX = -1;
 
 }
 

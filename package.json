@@ -49,7 +49,7 @@
     "pretty-hrtime": "~0.2.1",
     "require-dir": "^0.1.0",
     "stats-js": "^1.0.0-alpha1",
-    "tween": "^0.9.0",
+    "tween.js": "^0.14.0",
     "vinyl-source-stream": "~0.1.1",
     "webpack": "^1.7.3"
   },

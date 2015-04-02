@@ -3,41 +3,39 @@ let THREE = require('n3d-threejs');
 
 class Bar {
 
-    constructor (size, pos, type, opacity) {
+    constructor (size, pos, type, opacity, map) {
 
     	opacity = opacity || 1;
     	
     	this.randConst = Math.random() * 4;
     	this.type = type;
 
-    	let material =  type === 0 ? new THREE.MeshPhongMaterial( { 
-    									color: 0x1B3D63,
-    									emissive: 0x1B3D63,
-    									transparent: true,
-    									opacity: opacity 
-    								} ) :
-    					type === 1 ? new THREE.MeshPhongMaterial( { 
-    									color: 0x0079FF,
-    									emissive: 0x0079FF,
-    									transparent: true,
-    									opacity: opacity 
-    								} ) :
-    							 	 new THREE.MeshPhongMaterial( { 
-    							 	 	color: 0xe9bc95,
-    							 	 	emissive: 0xe9bc95,
-    							 	 	transparent: true,
-    							 	 	opacity: opacity 
-    							 	 } ) ;
+        let material =  new THREE.MeshPhongMaterial( { 
+                            transparent: true,
+                            opacity: opacity,
+                            map: map
+                        } );
 
-    	pos 	 = pos 		|| new Vector3;
-    	size 	 = size  	|| new Vector3;
+    	let color = type === 0 ? 0x09294c:
+    			    type === 1 ? 0x272cff:
+    				             0xfd9f4e;
+
+        material.color    = new THREE.Color(color);
+        material.emissive = new THREE.Color(color);
+
+
+    	pos  = pos  || new Vector3;
+    	size = size || new Vector3;
 
     	let geometry = new THREE.BoxGeometry( size.x, size.y, size.z );
 
-    	// changeUVs(geometry, )
+        console.log(size.y / 2)
 
-		this.mesh = new THREE.Mesh( geometry, material );
-		this.setPos( pos );
+        this.changeUVs(geometry, size.x * 10, 1, 0.5+pos.x, 0)
+
+        this.mesh = new THREE.Mesh( geometry, material );
+        this.setPos( pos );
+
 
     }
 
@@ -48,6 +46,11 @@ class Bar {
     }
 
     changeUVs( geometry, unitx, unity, offsetx, offsety ) {
+
+        unitx   = unitx   < 0 ? 0 : unitx   > 1 ? 1 : unitx;
+        unity   = unity   < 0 ? 0 : unity   > 1 ? 1 : unity;
+        offsetx = offsetx < 0 ? 0 : offsetx > 1 ? 1 : offsetx;
+        offsety = offsety < 0 ? 0 : offsety > 1 ? 1 : offsety;
 
 		var faceVertexUvs = geometry.faceVertexUvs[ 0 ];
 
