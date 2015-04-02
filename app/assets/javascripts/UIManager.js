@@ -14,6 +14,7 @@ let $dimensionBlock = $('section.dimension');
 
 // BUTTONS
 let $primaryHeaderBtn = $('.primary-header-btn');
+let $secondaryHeaderBtn = $('.secondary-header-btn');
 let $startBtn = $('#startBtn');
 let $dimensionLaunchers = $('.dimensionLauncher');
 
@@ -32,7 +33,8 @@ function init() {
  */
 function bindUIActions() {
     $primaryHeaderBtn.on('click', onPrimaryHeaderBtn);
-    $overlayGlobal.on('click', toggleSideMenu);
+    $secondaryHeaderBtn.on('click', onSecondaryHeaderBtn);
+    $overlayGlobal.on('click', toggleOffAsides);
     $startBtn.on('click', goToSelector);
     $dimensionLaunchers.on('click', goToDimension);
 }
@@ -49,10 +51,32 @@ function onPrimaryHeaderBtn() {
 }
 
 /**
+ * Called when the secondary btn of the header is called *
+ */
+function onSecondaryHeaderBtn() {
+    toggleSideInfos();
+}
+
+/**
  * Make the left side menu appear *
  */
 function toggleSideMenu() {
     $body.toggleClass('sideMenu-active');
+}
+
+/**
+ * Make the right side menu appear *
+ */
+function toggleSideInfos() {
+    $body.toggleClass('sideInfos-active');
+}
+
+/**
+ * Make any side menu disappear *
+ */
+function toggleOffAsides() {
+    $body.toggleClass('sideMenu-active', false);
+    $body.toggleClass('sideInfos-active', false);
 }
 
 /**

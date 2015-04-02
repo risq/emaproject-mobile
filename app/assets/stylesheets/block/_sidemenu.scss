@@ -1,6 +1,14 @@
 .sideMenu-active {
   transform: translate3d($sideMenuWidth, 0, 0);
+}
 
+.sideInfos-active {
+  transform: translate3d(-$sideMenuWidth, 0, 0);
+}
+  
+.sideMenu-active, .sideInfos-active {
+  overflow: hidden; 
+  
   .overlayGlobal {
     visibility: visible;
     opacity: 1;
@@ -76,4 +84,30 @@ aside.sidemenu {
       }
     }
   }
+}
+
+aside.sideinfos {
+  position: fixed;
+  top: 0;
+  right: -$sideMenuWidth;
+  width: $sideMenuWidth;
+  height: 100%;
+  background: $colorDarkest;
+  box-shadow: 3px 0px 0px rgba(0,0,0,.3) inset;
+  box-sizing: border-box;
+
+  h4 {
+    font-size: 1em;
+    margin-bottom: 15px;
+
+    &:after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 4px;
+      background-color: $colorSecondary;
+      margin-top: 15px;
+    }
+  }
+  
 }
