@@ -117,3 +117,58 @@ aside.sideinfos {
     margin-bottom: 1em;
   }
 }
+
+.modalContest {
+  position: fixed;
+  bottom: 0;
+  z-index: 5000;
+  background-color: $colorSecondary;
+  color: $colorDarkest;
+  padding: 30px;
+  text-align: center;
+  
+  h4 {
+    margin-bottom: 20px;
+    font-size: 1em;
+  }
+  
+  p {
+    font-size: 1em;
+    margin-bottom: 20px;
+  }
+  
+  a {
+    background: white;
+    border-radius: 2em;
+    padding: 15px;
+    display: block;
+    color: $colorDarkest;
+    font-style: italic;
+    font-size: .8em;
+    
+    strong {
+      font-style: normal;
+      font-family: "latobold", sans-serif;
+    }
+  }
+}
+
+.modal-contest-toggler:before {
+  color: black;
+  content: "\e602";
+  font-family: "icomoon";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  font-size: .7em;
+  opacity:0;
+  transition: all 250ms;
+  transition-delay: 400ms;
+}
+
+.modalContestOpened .modal-contest-toggler{
+  &:before {
+    opacity: 1;
+  }
+}
