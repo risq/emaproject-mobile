@@ -24,7 +24,7 @@ section.dimension > .content {
     }
 
     .bg1 {
-      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background: url('../images/d1-2.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 
@@ -46,6 +46,11 @@ section.dimension > .content {
       font: 2em 'latoregular', sans-serif;
       line-height: 8vh;
       z-index: 150;
+
+      &.md1 {
+        width: 55vw;
+        top: 50vh;
+      }
     }
 
     .infos {
@@ -62,7 +67,7 @@ section.dimension > .content {
       }
 
       .separator {
-        margin: 0 7vw;
+        margin: 0 5vw;
       }
 
       .soon {
@@ -87,6 +92,14 @@ section.dimension > .content {
 
     .bloc-info {
       padding: 7vh 10vw;
+
+      h3 {
+        text-transform: uppercase;
+        font-size: 1.4em;
+        line-height: 1.5em;
+        color: $colorMultidimensionalText;
+        margin: 0 0 12px 0;
+      }
 
       p {
         color: $colorMultidimensionalText;
@@ -129,16 +142,16 @@ section.dimension > .content {
       position: relative;
 
       .number {
-        width: 40vw;
+        width: 30vw;
         color: $colorPrimary;
         font: 5em 'latobold', sans-serif;
         position: relative;
       }
 
       .description {
-        width: 37vw;
+        width: 45vw;
         top: 4vh;
-        left: 43vw;
+        left: 35vw;
         position: absolute;
         font: 1em 'latoitalic', sans-serif;
         line-height: 1.5em;
@@ -157,11 +170,39 @@ section.dimension > .content {
         height: 70px;
         margin: 0 5vw;
         display: inline-block;
-        border: 2px solid $colorSecondary;
+        border: 2px solid transparent;
         //border: 2px solid rgba(255, 255, 255, .3);
-        border-radius: 50px;
+        border-radius: 50%;
         line-height: 74px;
         font-size: 1.2em;
+        position: relative;
+
+        &.top {
+          border-top-color: $colorSecondary;
+        }
+
+        &.right {
+          border-right-color: $colorSecondary;
+        }
+
+        &.bottom {
+          border-bottom-color: $colorSecondary;
+        }
+
+        &.left {
+          border-left-color: $colorSecondary;
+        }
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: -2px;
+          left: -2px;
+          width: 70px;
+          height: 70px;
+          border-radius: 50%;
+          border: 2px solid rgba(255, 255, 255, .3);
+        }
 
         &.first {
           margin: 0 5vw 0 0;
@@ -170,7 +211,10 @@ section.dimension > .content {
         &.last {
           margin: 0 0 0 5vw;
         }
-        //clip: rect(0px, 50px, 100px, 0px);
+
+        .small {
+          font-size: .4em;
+        }
       }
 
       .title {
