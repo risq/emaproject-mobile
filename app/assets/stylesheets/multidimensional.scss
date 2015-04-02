@@ -1,3 +1,114 @@
 //
 // ---------------------------- [MULTIDIMENSIONAL] -----------------------------
 //
+section.multidimensional {
+
+  // --- HEADER ---
+  header {
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    overflow: hidden;
+
+    &.bg1 {
+      background: url('../images/multidimensional1.jpg') center center;
+      background-size: cover; // TODO : fix js
+    }
+
+    &.bg2 {
+      background: url('../images/multidimensional1.jpg') center center;
+      background-size: cover; // TODO : fix js
+    }
+
+    &.bg3 {
+      background: url('../images/multidimensional1.jpg') center center;
+      background-size: cover; // TODO : fix js
+    }
+
+    h1 {
+      width: 150px;
+      top: 75vh;
+      left: 50px;
+      position: absolute;
+      font: 4em 'latoregular', sans-serif;
+
+    }
+
+    .circle {
+      width: 14px;
+      height: 14px;
+      left: 50px;
+      bottom: 161px;
+      position: absolute;
+      background: #bafef3;
+      border: 1px solid #bafef3;
+      border-radius: 50%;
+    }
+
+    .distance {
+      font: 2em 'latoregular', sans-serif;
+    }
+  }
+
+
+  // --- INFORMATIONS ---
+  .informations {
+    margin-top: 100vh;
+    position: relative;
+    background: $colorWhite;
+    z-index: 200;
+
+    .bloc-info {
+      padding: 0 10vw;
+
+      p {
+        margin: 5vh 0;
+        color: $colorMultidimensionalText;
+        font: 1.2em 'latoitalic', sans-serif;
+        line-height: 1.5em;
+
+        a {
+          color: $colorMultidimensionalLink;
+          text-decoration: none;
+        }
+      }
+    }
+
+    .statistics {
+      margin: 5vh 10vw;
+      border-top: 2px solid $colorMultidimensionalSeparator;
+      border-bottom: 2px solid $colorMultidimensionalSeparator;
+
+      .number {
+        width: 70%;
+        color: $colorMultidimensionalLink;
+        font: 5em 'latobold', sans-serif;
+        display: inline-block;
+      }
+
+      .description {
+        width: 30%;
+        font-size: 0.9em;
+        color: $colorMultidimensionalText;
+        display: inline-block;
+      }
+    }
+
+    .data-visualization {
+      background: $colorDarkest;
+    }
+  }
+
+
+  // --- FOOTER ---
+  footer {
+    background: $colorDarkest;
+    position: relative;
+    z-index: 200;
+  }
+}
+
+
+//background-color(20, 26, 51, .5);
