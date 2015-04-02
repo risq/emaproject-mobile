@@ -4,6 +4,12 @@
 
 function init() {
     console.log('multidimensionnal-1 script launched');
+
+    fixScrollHeader();
+}
+
+function fixScrollHeader() {
+    console.log('je suis ici');
 }
 
 module.exports = {

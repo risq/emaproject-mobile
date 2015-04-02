@@ -202,20 +202,57 @@ section.multidimensional {
       padding: 7vh 10vw;
 
       .share {
-
         h4 {
           font: 1em 'latoitalic', sans-serif;
           text-transform: none;
         }
 
-        ul li {
+        .socialBtn {
+          text-align: center;
+
+          .circle-btn {
+            width: 80px;
+            height: 80px;
+            margin: 3vh 5vw;
+            display: inline-block;
+            border: 2px solid $colorPrimary;
+            border-radius: 50px;
+            font-size: 1.8em;
+            line-height: 84px;
+            color: $colorSecondary;
+          }
+        }
+
+        /*ul li {
           width: 80px;
           height: 80px;
           margin: 3vh 15px 10vh;
           display: inline-block;
           border: 2px solid $colorPrimary;
           border-radius: 50%;
+          font-size: 1.8em;
+          line-height: 84px;
+          color: $colorSecondary;
+        }*/
+      }
+
+      .separator {
+        width: 7vw;
+        height: 5px;
+        background: $colorWhite;
+        margin: 0 auto 7vh;
+      }
+
+      .circle {
+
+        &.first {
+          margin: 0 5vw 0 0;
         }
+
+        &.last {
+          margin: 0 0 0 5vw;
+        }
+        //clip: rect(0px, 50px, 100px, 0px);
       }
 
       .contest {
