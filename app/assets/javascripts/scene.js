@@ -78,10 +78,9 @@ function init () {
 	scene.add( rootContainer );
 
 
-	var texture = THREE.ImageUtils.loadTexture('/assets/image/map.png', {}, function () {
-		console.log('laoded');
+	var texture = THREE.ImageUtils.loadTexture('/assets/images/texture.png', {}, function () {
+		generateBars();
 	});
-	generateBars();
 
 	initEvents();
 
@@ -118,28 +117,28 @@ function update () {
 
 	bars.t0.objects.forEach(bar => {
 		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin1 * bar.randConst;
+		bar.mesh.position.z = sin1 * 0.5 * bar.randConst;
 		bar.mesh.rotation.x = sin1;
 	});
 	bars.t1.objects.forEach(bar => {
 		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin2 * bar.randConst;
+		bar.mesh.position.z = sin2 * 0.5 * bar.randConst;
 		bar.mesh.rotation.x = sin2;
 	});
 	bars.t2.objects.forEach(bar => {
 		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin3 * bar.randConst;
+		bar.mesh.position.z = sin3 * 0.5 * bar.randConst;
 		bar.mesh.rotation.x = sin3;
 	});
 
 	if ( moveX && moveX > -1 ) {
 
-		rootContainer.rotation.set(0, moveX * 0.7 , 0 );
+		rootContainer.rotation.set(0, - moveX , 0 );
 
 	} else if ( moveX === -1 )  {
 
 		var tween = new TWEEN.Tween( rootContainer.rotation, { y: rootContainer.rotation.y } )
-			.to( { y: 0 }, 150 )
+			.to( { y: 0 }, 400 )
 			.easing( TWEEN.Easing.Quartic.InOut )
 			.start();
 
@@ -164,7 +163,7 @@ function generateBars () {
 		randWidth =  0.01 + Math.random() / 20;
 		randHeight =  0.5 + Math.random() * 1;
 		randX = ( randomInt( 0, 100 ) - 50 ) / 90;
-		randZ = randomInt( 0, 50 ) - 25;
+		randZ = randomInt( 0, 16 ) - 8;
 		randType = randomInt( 0, 2 );
 		randOpacity = randomInt( 7, 10 ) * 0.1;
 
@@ -268,8 +267,6 @@ function initEvents () {
 
 function onTouchStart ( event ) {
 
-	console.log( "TOUCHSTART", event.touches[0].clientX );
-
 	startX = event.touches[0].clientX;
 
 }
@@ -282,11 +279,11 @@ function onTouchMove ( event ) {
 
 function onTouchEnd ( event ) {
 
-	if ( moveX > 50 ) {
+	if ( moveX > 0.2 ) {
 
 		highlightNext();
 
-	} else if ( moveX < 50 ) {
+	} else if ( moveX < -0.2 ) {
 
 		highlightPrev();
 
