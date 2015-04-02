@@ -30,6 +30,16 @@
     )
 );
 
+@include font-face("latoitalic",
+    font-files(
+        "Lato-Italic-webfont.eot",
+        "Lato-Italic-webfont.woff",
+        "Lato-Italic-webfont.woff2",
+        "Lato-Italic-webfont.ttf",
+        "Lato-Italic-webfont.svg#latoregular"
+    )
+);
+
 @include font-face("latohairline",
     font-files(
         "Lato-Hairline-webfont.eot",
