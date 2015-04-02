@@ -6,6 +6,7 @@ header.headBar {
   box-sizing: border-box;
   padding: 25px;
   z-index: 900;
+  transition: background 250ms;
 
   .primary-header-btn {
     float: left;
@@ -14,4 +15,8 @@ header.headBar {
   .infos {
     float: right;
   }
+}
+
+.page header.headBar .infos {
+  display: none;
 }

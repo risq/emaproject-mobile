@@ -46,7 +46,7 @@ canvas {
 main {
   z-index: 1;
   background: rgba(20,26,51,.9);
-  transition: background 100ms;
+  transition: background 1000ms ease-out;
 }
 
 .page main {

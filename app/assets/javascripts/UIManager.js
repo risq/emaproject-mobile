@@ -3,6 +3,7 @@
  */
 
 let $ = require('jquery');
+let gsap = require('gsap');
 let pageManager = require('./PageManager');
 
 // BLOCKS
@@ -20,6 +21,11 @@ let $dimensionLaunchers = $('.dimensionLauncher');
 
 // Variables
 let status = "home";
+
+// Bugfix tweenmax viewport
+TweenMax.set("html", {
+    transformOrigin:"0 0"
+});
 
 function init() {
     bindUIActions();
@@ -105,17 +111,50 @@ function goToHome() {
     status = "home";
     $primaryHeaderBtn.toggleClass('icon-menu', true);
     $primaryHeaderBtn.toggleClass('icon-back', false);
+    
+    var tl = new TimelineMax();
+    tl.from("#startBtn", 0.2, { ease: Back.easeIn.config(1.7), scale: 0});
+    tl.from("#hashtagBtn", 0.2, { ease: Back.easeIn.config(1.7), y: 100 });
+    tl.from("#startBtn", 0.4, { ease: Back.easeOut.config(1.7), width: "50px", height: "50px", padding: "0"});
+    tl.from("section.home .content .excerpt", 0.25, { opacity: 0 });
+    tl.from("#startBtn", 0.1, {color: "transparent"});
 }
 
 function goToSelector() {
-    $homeBlock.hide();
-    $selectorBlock.show();
-    $dimensionBlock.hide();
-    $body.toggleClass('page', true);
-    $body.toggleClass('home',false);
-    status = "selector";
-    $primaryHeaderBtn.toggleClass('icon-menu', false);
-    $primaryHeaderBtn.toggleClass('icon-back', true);
+    switch(status) {
+        case "home":
+
+            var tl = new TimelineMax();
+            tl.to("#startBtn", 0.1, {color: "transparent"});
+            tl.to("section.home .content .excerpt", 0.25, { opacity: 0 });
+            tl.to("#startBtn", 0.4, { ease: Back.easeOut.config(1.7), width: "50px", height: "50px", padding: "0"});
+            tl.to("#hashtagBtn", 0.2, { ease: Back.easeIn.config(1.7), y: 100 });
+            tl.to("#startBtn", 0.2, { ease: Back.easeIn.config(1.7), scale: 0});
+            
+            setTimeout(function() {
+                $homeBlock.hide(); 
+                $selectorBlock.show();
+                $dimensionBlock.hide();
+                $body.toggleClass('page', true);
+                $body.toggleClass('home',false);
+                status = "selector";
+                $primaryHeaderBtn.toggleClass('icon-menu', false);
+                $primaryHeaderBtn.toggleClass('icon-back', true);
+                
+                TweenMax.set("#startBtn, #hashtagBtn, section.home .content .excerpt", {clearProps:"all"});
+            }, 1200);
+            break;
+        default:
+            $homeBlock.hide();
+            $selectorBlock.show();
+            $dimensionBlock.hide();
+            $body.toggleClass('page', true);
+            $body.toggleClass('home',false);
+            status = "selector";
+            $primaryHeaderBtn.toggleClass('icon-menu', false);
+            $primaryHeaderBtn.toggleClass('icon-back', true);
+            break;
+    }
 }
 
 function goToDimension(e) {
