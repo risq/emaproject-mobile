@@ -113,9 +113,9 @@ function goToHome() {
     $primaryHeaderBtn.toggleClass('icon-back', false);
     
     var tl = new TimelineMax();
-    tl.from("#startBtn", 0.2, { ease: Back.easeIn.config(1.7), scale: 0});
-    tl.from("#hashtagBtn", 0.2, { ease: Back.easeIn.config(1.7), y: 100 });
-    tl.from("#startBtn", 0.4, { ease: Back.easeOut.config(1.7), width: "50px", height: "50px", padding: "0"});
+    tl.from("#startBtn", 0.2, { ease: Back.easeOut.config(1.7), scale: 0});
+    tl.from("#hashtagBtn", 0.2, { ease: Back.easeOut.config(1.7), y: 100 });
+    tl.from("#startBtn", 0.4, { ease: Back.easeIn.config(1.7), width: "50px", height: "50px", padding: "0"});
     tl.from("section.home .content .excerpt", 0.25, { opacity: 0 });
     tl.from("#startBtn", 0.1, {color: "transparent"});
 }
@@ -145,19 +145,27 @@ function goToSelector() {
             }, 1200);
             break;
         default:
-            $homeBlock.hide();
-            $selectorBlock.show();
-            $dimensionBlock.hide();
-            $body.toggleClass('page', true);
-            $body.toggleClass('home',false);
-            status = "selector";
-            $primaryHeaderBtn.toggleClass('icon-menu', false);
-            $primaryHeaderBtn.toggleClass('icon-back', true);
+            var tl = new TimelineMax();
+            tl.to(".dimension", 0.25, {opacity: 0});
+
+            setTimeout(function() {
+                $homeBlock.hide();
+                $selectorBlock.show();
+                $dimensionBlock.hide();
+                $body.toggleClass('page', true);
+                $body.toggleClass('home',false);
+                status = "selector";
+                $primaryHeaderBtn.toggleClass('icon-menu', false);
+                $primaryHeaderBtn.toggleClass('icon-back', true);
+            }, 250);
             break;
     }
 }
 
 function goToDimension(e) {
+    var tl = new TimelineMax();
+    tl.to(".dimension", 0, {opacity: 0});
+    
     e.preventDefault();
     toggleOffAsides();
     $homeBlock.hide();
@@ -175,6 +183,8 @@ function goToDimension(e) {
 
     $primaryHeaderBtn.toggleClass('icon-menu', false);
     $primaryHeaderBtn.toggleClass('icon-back', true);
+
+    tl.to(".dimension", 0.25, {opacity: 1});
 }
 
 // Export
