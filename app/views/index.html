@@ -6,48 +6,56 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1.0, minimum-scale=1.0, width=device-width, height=device-height" />
     <link rel="stylesheet" href="assets/stylesheets/main.css">
 </head>
-<body>
-    <div id="container">
-        <div id="home">
-            <div id="sideMenu">
-                <nav>
-                    <ul id="arbo">
-                        <li><a href="#">About EMA</a></li>
-                        <li><a href="#">Website</a></li>
-                        <li><a href="#">Contest</a></li>
-                    </ul>
-                    <ul id="socialLinks">
-                        <li><a href="#">FB</a></li>
-                        <li><a href="#">TW</a></li>
-                    </ul>
-                </nav>
-            </div>
-            <div class="content">
-                
-                <div class="headBar">
-                    <div class="hamburger menuToggler">Menu</div>
-                    <div class="infos">Informations</div>
-                </div>
-                
-                <div class="position-center">
-                    <h1 id="logo">EMA Project</h1>
+<body class="home">
+    <main>
+        <header class="headBar">
+            <div class="hamburger menuToggler">Menu</div>
+            <div class="infos">Informations</div>
 
-                    <a class="btn btn-lg btn-primary" href="#">Start the experience</a>
-                </div>
+            <img class="logo" src="assets/images/logoblanc.png" alt=""/>
+        </header>
+        
+        <div class="overlayGlobal"></div>
+        
+        <section class="home">
+            <aside class="sidemenu">
+                <nav>
+                    <h4 class="padding-standard margin-bottom-none">Menu</h4>
+                    <ul class="arbo">
+                        <li><a href="#">• About EMA</a></li>
+                        <li><a href="#">• Website</a></li>
+                        <li><a href="#">• Contest</a></li>
+                    </ul>
+                    
+                    <div class="padding-standard stick-bottom">
+                        <h4>Follow us</h4>
+                        <ul class="socialLinks">
+                            <li><a href="#"><span>FB</span>@ema_project</a></li>
+                            <li><a href="#"><span>TW</span>fb/emaproject</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </aside>
+            <div class="content text-align-center stick-bottom">
                 
-                <div class="footerBar">
-                    <h4>Earn your trip</h4>
-                    <a href="btn btn-secondary">#HASHTAG</a>
+                <p class="excerpt margin-bottom-standard">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                
+                <a id="startBtn" class="btn btn-lg btn-primary start-btn" href="#">Start the experience</a>
+                
+                <div class="footerBar stick-bottom">
+                    <h4>Win a trip !</h4>
+                    <a class="btn btn-secondary btn-wide" href="">#myotherdimension</a>
+                    <p>more info on <a href="http://www.emaproject.org/">www.emaproject.org</a></p>
                 </div>
             </div>
-        </div>
+        </section>
         
         <div id="dimension">
             <div class="content">
                 
             </div>
         </div>
-    </div>
+    </main>
 
     <script src="/assets/javascripts/shared.js"></script>
     <script src="/assets/javascripts/app.js"></script>

@@ -1,3 +1,60 @@
+.excerpt {
+  font-family: 'latohairline';
+  font-style: italic;
+  font-size: 1.2em;
+  max-width: 90%;
+  margin: auto;
+  display: none;
+}
+
+@media screen and (min-height: 540px) {
+  .excerpt {
+    display: block;
+  }
+}
+
+.headBar .logo {
+  display: block;
+  width: 150px;
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 //
-// ---------------------------------- [INDEX] ----------------------------------
+// ---------------------------------- [HOME] ----------------------------------
 //
+section.home {
+
+  // start btn
+  .start-btn {
+    margin-bottom: 40px;
+  }
+}
+
+
+//
+// ---------------------------------- [FOOTER BAR] ----------------------------------
+//
+
+.footerBar {
+  position: relative;
+  width: 100%;
+  text-align: center;
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.footerBar:before {
+  content: '';
+  display: block;
+  width: 30px;
+  height: 4px;
+  background: beige;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%,0);
+}
