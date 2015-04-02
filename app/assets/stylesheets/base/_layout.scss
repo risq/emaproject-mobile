@@ -45,6 +45,11 @@ canvas {
 main {
   z-index: 1;
   background: rgba(20,26,51,.9);
+  transition: background 100ms;
+}
+
+.page main {
+  background: 0;
 }
 
 

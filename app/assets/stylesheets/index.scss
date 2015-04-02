@@ -20,6 +20,13 @@
   top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
+  transition: all 100ms;
+}
+
+.page .headBar .logo {
+  top: 0;
+  width: 40px;
+  transform: translate(-50%, 15px);
 }
 
 
