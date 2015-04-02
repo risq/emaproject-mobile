@@ -85,6 +85,15 @@ h4 {
   font-size: .8em;
 }
 
+strong {
+  color: $colorPrimary;
+}
+
+em {
+  color: $colorSecondary;
+  font-style: italic;
+}
+
 .position-center {
   position: absolute;
   top: 50%;
