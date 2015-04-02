@@ -22,10 +22,8 @@ let $dimensionLaunchers = $('.dimensionLauncher');
 // Variables
 let status = "home";
 
-// Bugfix tweenmax viewport
-TweenMax.set("html", {
-    transformOrigin:"0 0"
-});
+// Bugfix tweenmax viewport for animated elements
+TweenMax.set("#startBtn, #hashtagBtn, section.home .content .excerpt", {z:0});
 
 function init() {
     bindUIActions();
