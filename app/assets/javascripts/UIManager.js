@@ -4,9 +4,14 @@
 
 let $ = require('jquery');
 
-let $menuToggler = $('.menuToggler');
+// BLOCKS
 let $body = $('body');
 let $overlayGlobal = $('.overlayGlobal');
+let $homeBlock = $('section.home');
+
+// BUTTONS
+let $menuToggler = $('.menuToggler');
+let $startBtn = $('#startBtn');
 
 function init() {
     bindUIActions();

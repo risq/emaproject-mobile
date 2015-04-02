@@ -68,6 +68,10 @@ h5,
 h6 {
   text-transform: uppercase;
   font-family: 'latobold', sans-serif;
+  
+  &.inverted {
+    color: $colorBlack;
+  }
 }
 
 h4 {
@@ -97,7 +101,7 @@ h4 {
 }
 
 .margin-bottom-standard {
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .margin-bottom-none {
