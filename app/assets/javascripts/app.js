@@ -5,3 +5,7 @@
 let scene = require('./scene');
 
 scene.init();
+
+setInterval(function() {
+	scene.highlightNext();
+}, 5000);

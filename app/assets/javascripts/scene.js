@@ -31,6 +31,7 @@ let bars = {
 
 let initTime, currentTime;
 
+let currentHighlighted = -1;
 
 let startY, moveY = 0, movePos;
 
@@ -91,6 +92,7 @@ function animate () {
 function update () {
 
 	stats.update();
+	TWEEN.update();
 
 	// camera.rotation.z += 0.001;
 
@@ -121,15 +123,6 @@ function update () {
 		bar.mesh.rotation.x = sin3;
 	});
 
-	if ( movePos > 0.5 ) {
-
-		startY = moveY;
-		moveY = 0;
-		movePos = 0;
-
-		console.log( 'slide' );
-
-	}
 }
  
 function render () {
@@ -162,7 +155,68 @@ function generateBars () {
 
 	}
 
+	
+
 }
+
+function highlightT( type ) {
+
+	if (currentHighlighted > -1) {
+
+		var unHighlight = currentHighlighted;
+
+		var tween = new TWEEN.Tween( { x: 100 } )
+	      .to( { x: 0 }, 750 )
+	      .easing( TWEEN.Easing.Quartic.InOut )
+	      .onUpdate( function () {
+	 
+	        bars['t' + unHighlight].objects.forEach(bar => {
+				bar.mesh.scale.x = 1 + this.x * 0.02 * bar.randConst;
+				bar.mesh.scale.y = 1 + this.x * 0.002 * bar.randConst;
+			});
+
+	        bars['t' + unHighlight].container.position.set(0, 0, this.x * 0.004);
+
+	      } )
+	      .start();
+
+	}
+
+	if (type !== currentHighlighted) {
+
+		currentHighlighted = type;
+
+		var tween = new TWEEN.Tween( { x: 0 } )
+	      .to( { x: 100 }, 750 )
+	      .easing( TWEEN.Easing.Quartic.InOut )
+	      .onUpdate( function () {
+	 
+	        bars['t' + type].objects.forEach(bar => {
+				bar.mesh.scale.x = 1 + this.x * 0.02 * bar.randConst;
+				bar.mesh.scale.y = 1 + this.x * 0.002 * bar.randConst;
+			});
+
+	        bars['t' + type].container.position.set(0, 0, this.x * 0.004);
+
+	      } )
+	      .start();
+	  }
+}
+
+function highlightNext () {
+
+	if (currentHighlighted === 2) {
+
+		highlightT( 0 );
+
+	} else {
+
+		highlightT( currentHighlighted + 1 );
+
+	}
+
+}
+
 
 function initEvents () {
 
@@ -203,6 +257,7 @@ function randomInt ( min, max ) {
 
 module.exports = {
 
-	init: init
+	init: init,
+	highlightNext: highlightNext
 
 }
