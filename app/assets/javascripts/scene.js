@@ -4,7 +4,6 @@ let Stats = require('stats-js');
 
 let Bar = require('./Bar');
 
-
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -13,7 +12,8 @@ let scene,
 	camera, 
 	renderer,
 	light,
-	rootContainer;
+	rootContainer,
+	texture;
 
 let bars = {
 	t0: {
@@ -78,7 +78,7 @@ function init () {
 	scene.add( rootContainer );
 
 
-	var texture = THREE.ImageUtils.loadTexture('/assets/images/texture.png', {}, function () {
+	texture = THREE.ImageUtils.loadTexture('/assets/images/texture.png', {}, function () {
 		generateBars();
 	});
 
@@ -117,18 +117,18 @@ function update () {
 
 	bars.t0.objects.forEach(bar => {
 		bar.mesh.position.y = sin3 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin1 * 0.5 * bar.randConst;
-		bar.mesh.rotation.x = sin1;
+		// bar.mesh.position.z = sin1 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin1 * 0.01;
 	});
 	bars.t1.objects.forEach(bar => {
 		bar.mesh.position.y = sin1 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin2 * 0.5 * bar.randConst;
-		bar.mesh.rotation.x = sin2;
+		// bar.mesh.position.z = sin2 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin2 * 0.01;
 	});
 	bars.t2.objects.forEach(bar => {
 		bar.mesh.position.y = sin2 * 0.4 * bar.randConst;
-		bar.mesh.position.z = sin3 * 0.5 * bar.randConst;
-		bar.mesh.rotation.x = sin3;
+		// bar.mesh.position.z = sin3 * 0.5 * bar.randConst;
+		// bar.mesh.rotation.x = sin3 * 0.01;
 	});
 
 	if ( moveX && moveX > -1 ) {
@@ -163,14 +163,14 @@ function generateBars () {
 		randWidth =  0.01 + Math.random() / 20;
 		randHeight =  0.5 + Math.random() * 1;
 		randX = ( randomInt( 0, 100 ) - 50 ) / 90;
-		randZ = randomInt( 0, 16 ) - 8;
+		randZ = Math.random() - 0.5;
 		randType = randomInt( 0, 2 );
 		randOpacity = randomInt( 7, 10 ) * 0.1;
 
 		size = new THREE.Vector3( randWidth, randHeight, randWidth * 0.001 );
 		pos = new THREE.Vector3( randX, 0, randZ );
 
-		bar = new Bar( size, pos, randType, randOpacity );
+		bar = new Bar( size, pos, randType, randOpacity, texture );
 
 		bars['t' + randType].objects.push(bar);
 		
