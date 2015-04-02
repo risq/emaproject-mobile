@@ -6,6 +6,7 @@ body {
   height: 100%;
   width: 100%;
   position: relative;
+  background-color: $colorDarkest;
 }
 
 body {
@@ -45,7 +46,7 @@ canvas {
 main {
   z-index: 1;
   background: rgba(20,26,51,.9);
-  transition: background 100ms;
+  transition: background 1000ms ease-out;
 }
 
 .page main {
@@ -117,6 +118,14 @@ h4 {
   padding: 20px;
 }
 
+.hidden {
+  display: none;
+}
+
+.icon:before {
+  font-size: 1.3em;
+  
+}
 
 //
 // ----------------------------------- [BTN] -----------------------------------

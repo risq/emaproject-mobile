@@ -64,7 +64,7 @@ function init () {
 	});
 
 	renderer.setSize( width, height );
-	renderer.setClearColor(0x111111);
+	renderer.setClearColor(0x141A33);
 
 	document.body.appendChild( renderer.domElement );
 
