@@ -72,6 +72,10 @@ function init () {
 	scene.add( bars.t1.container );
 	scene.add( bars.t2.container );
 
+
+	var texture = THREE.ImageUtils.loadTexture('/assets/image/map.png', {}, function () {
+		console.log('laoded');
+	});
 	generateBars();
 
 	initEvents();
