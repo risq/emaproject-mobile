@@ -41,7 +41,9 @@ function onPageLoaded(templateName, data) {
     
     // Launch the script for this page
     let pageScript = require('./'+templateName);
+
     pageScript.init();
+
 }
 
 module.exports = {

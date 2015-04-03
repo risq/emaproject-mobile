@@ -5,6 +5,7 @@
 let $ = require('jquery');
 let gsap = require('gsap');
 let pageManager = require('./PageManager');
+let scene = require('./scene');
 
 // BLOCKS
 let $body = $('body');
@@ -37,6 +38,12 @@ function init() {
     setTimeout(function() {
         goToHome();
     },800);
+    
+    scene.setOnClick(function(dimension) {
+        
+        goToDimension(null, dimension);
+        
+    })
 }
 
 function hideLoader() {
@@ -150,6 +157,8 @@ function goBack() {
 
 function goToHome() {
     // WE FIRSTLY CHANGE THE PAGE FOR THE HOME
+    scene.highlightT(-1);
+    
     $homeBlock.show();
     $selectorBlock.hide();
     $dimensionBlock.hide();
@@ -180,10 +189,10 @@ function goToSelector() {
             tl.to("#startBtn", 0.4, { ease: Back.easeOut.config(1.7), width: "50px", height: "50px", padding: "0"});
             tl.to("#hashtagBtn", 0.2, { ease: Back.easeIn.config(1.7), y: 100 });
             tl.to("#startBtn", 0.2, { ease: Back.easeIn.config(1.7), scale: 0});
-            
+
             // SHOW THE ACTUAL PAGE
             setTimeout(function() {
-                $homeBlock.hide(); 
+                $homeBlock.hide();
                 $selectorBlock.show();
                 $dimensionBlock.hide();
                 $body.toggleClass('page', true);
@@ -192,13 +201,15 @@ function goToSelector() {
                 status = "selector";
                 $primaryHeaderBtn.toggleClass('icon-menu', false);
                 $primaryHeaderBtn.toggleClass('icon-back', true);
-                
+
                 // RESET ANIMATED ELEMENTS FROM HOME
                 TweenMax.set("#startBtn, #hashtagBtn, section.home .content .excerpt", {clearProps:"all"});
+                
+                scene.highlightT(0);
             }, 1200);
             break;
         default:
-            
+
             // FADE OUT OF THE CURRENT PAGE BEFORE ANYTHING
             var tl = new TimelineMax();
             tl.to(".dimension", 0.25, {opacity: 0});
@@ -219,14 +230,18 @@ function goToSelector() {
     }
 }
 
-function goToDimension(e) {
+function goToDimension(e, pageId) {
     
+    pageId = pageId ? "multidimensional-" + (pageId + 1) : ( $(this).data("dimension") || "multidimensional-1" );
+
     // IN ANY CASE, WE INIT THE OPACITY OF THE PAGE TO 0
     var tl = new TimelineMax();
     tl.to(".dimension", 0, {opacity: 0});
-    
+
     // WE TOGGLE THE NEW CONTENT
-    e.preventDefault();
+    if (e) {
+        e.preventDefault();
+    }
     toggleOffAsides();
     $homeBlock.hide();
     $selectorBlock.hide();
@@ -234,11 +249,11 @@ function goToDimension(e) {
     $body.toggleClass('page', true);
     $body.toggleClass('home',false);
     $body.toggleClass('selector', false);
-    pageManager.changePage($(this).data("dimension"));
+    pageManager.changePage(pageId);
     setTimeout(function() {
         $('.modal-contest-toggler', $dimensionBlock).on('click', toggleModalContest);
     }, 300);
-    
+
     // Check if it's a page that comes from home or from the dimensions selector
     if($(this).hasClass('fromHome')) {
         status = "page";
@@ -255,5 +270,6 @@ function goToDimension(e) {
 
 // Export
 module.exports = {
-    init: init
+    init: init,
+    goToDimension: goToDimension
 };
