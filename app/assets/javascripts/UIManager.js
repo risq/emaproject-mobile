@@ -242,5 +242,6 @@ function goToDimension(e) {
 
 // Export
 module.exports = {
-    init: init
+    init: init,
+    goToDimension: goToDimension
 };

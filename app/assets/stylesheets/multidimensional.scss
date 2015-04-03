@@ -29,17 +29,17 @@ section.dimension > .content {
     }
 
     .bg2 {
-      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background: url('../images/d2-3.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 
     .bg3 {
-      background: url('../images/d1-header.jpg') no-repeat center center fixed;
+      background: url('../images/d3-1.jpg') no-repeat center center fixed;
       background-size: cover;
     }
 
     h1 {
-      width: 40vw;
+      width: 55vw;
       top: 65vh;
       left: 10vw;
       position: absolute;
@@ -48,7 +48,14 @@ section.dimension > .content {
       z-index: 150;
 
       &.md1 {
-        width: 55vw;
+        top: 55vh;
+      }
+
+      &.md2 {
+        top: 55vh;
+      }
+
+      &.md3 {
         top: 50vh;
       }
     }
@@ -156,6 +163,10 @@ section.dimension > .content {
         font: 1em 'latoitalic', sans-serif;
         line-height: 1.5em;
         color: $colorMultidimensionalText;
+
+        b {
+          font-weight: bold;
+        }
       }
     }
 
@@ -170,27 +181,41 @@ section.dimension > .content {
         height: 70px;
         margin: 0 5vw;
         display: inline-block;
-        border: 2px solid transparent;
-        //border: 2px solid rgba(255, 255, 255, .3);
+        border: 2px solid rgba(255, 255, 255, .3);
         border-radius: 50%;
         line-height: 74px;
         font-size: 1.2em;
         position: relative;
 
-        &.top {
+        &.top:before {
           border-top-color: $colorSecondary;
         }
 
-        &.right {
+        &.right:before {
           border-right-color: $colorSecondary;
         }
 
-        &.bottom {
+        &.bottom:before {
           border-bottom-color: $colorSecondary;
         }
 
-        &.left {
+        &.left:before {
           border-left-color: $colorSecondary;
+        }
+
+        &.speed1:before {
+          -webkit-animation: rotation 3s linear infinite;
+          animation: rotation 3s linear infinite;
+        }
+
+        &.speed2:before {
+          -webkit-animation: rotation 2s linear infinite;
+          animation: rotation 2s linear infinite;
+        }
+
+        &.speed3:before {
+          -webkit-animation: rotation 1s linear infinite;
+          animation: rotation 1s linear infinite;
         }
 
         &:before {
@@ -267,10 +292,24 @@ section.dimension > .content {
             margin: 3vh 5vw;
             display: inline-block;
             border: 2px solid $colorPrimary;
-            border-radius: 50px;
+            border-radius: 50%;
             font-size: 1.8em;
             line-height: 84px;
             color: $colorSecondary;
+            position: relative;
+            z-index: 225;
+
+            a {
+              width: 80px;
+              height: 80px;
+              top: -2px;
+              left: -2px;
+              border: 2px solid transparent;
+              border-radius: 50%;
+              display: block;
+              position: absolute;
+              z-index: 250;
+            }
           }
         }
 
@@ -332,17 +371,17 @@ section.dimension > .content {
       }
 
       &.bg1 {
-        background: url('../images/d1-footer.jpg') center center;
+        background: url('../images/d2-1.jpg') center center;
         background-size: cover;
       }
 
       &.bg2 {
-        background: url('../images/d1-footer.jpg') center center;
+        background: url('../images/d3-2.jpg') center center;
         background-size: cover;
       }
 
       &.bg3 {
-        background: url('../images/d1-footer.jpg') center center;
+        background: url('../images/d1-2.jpg') center center;
         background-size: cover;
       }
     }

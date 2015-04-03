@@ -3,11 +3,15 @@
  */
 
 let $ = require('jquery');
+let uiManager = require('./UIManager');
 
 function init() {
 
     // fix scroll header
     $('header .bg3').height($(window).height() + 60);
+
+    $('.dimension .content .dimensionLauncher').on('click', uiManager.goToDimension);
+    window.scrollTo(0, 0);
 }
 
 module.exports = {
