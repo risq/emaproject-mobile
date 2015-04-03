@@ -2,6 +2,7 @@ let THREE = require('n3d-threejs');
 let TWEEN = require('tween.js');
 let Stats = require('stats-js');
 let Bar = require('./Bar');
+let $ = require('jquery');
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -213,6 +214,8 @@ function highlightT( type ) {
 	if (type !== currentHighlighted && type > -1) {
 
 		currentHighlighted = type;
+        
+        $('.dimensions-select').removeClass('t0 t1 t2').addClass('t' + type);
 
 		var tween = new TWEEN.Tween( { x: 0 } )
 	      .to( { x: 100 }, 750 )
