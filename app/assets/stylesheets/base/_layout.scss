@@ -53,6 +53,13 @@ main {
   background: 0;
 }
 
+body.selector main {
+  pointer-events: none;
+  
+  header.headBar, .selector ul {
+    pointer-events: initial;
+  }
+}
 
 //
 // ---------------------------------- [UTILS] ----------------------------------

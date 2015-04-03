@@ -146,6 +146,7 @@ function goToHome() {
     $dimensionBlock.hide();
     $body.toggleClass('page', false);
     $body.toggleClass('home', true);
+    $body.toggleClass('selector', false);
     status = "home";
     $primaryHeaderBtn.toggleClass('icon-menu', true);
     $primaryHeaderBtn.toggleClass('icon-back', false);
@@ -178,6 +179,7 @@ function goToSelector() {
                 $dimensionBlock.hide();
                 $body.toggleClass('page', true);
                 $body.toggleClass('home',false);
+                $body.toggleClass('selector', true);
                 status = "selector";
                 $primaryHeaderBtn.toggleClass('icon-menu', false);
                 $primaryHeaderBtn.toggleClass('icon-back', true);
@@ -199,6 +201,7 @@ function goToSelector() {
                 $dimensionBlock.hide();
                 $body.toggleClass('page', true);
                 $body.toggleClass('home',false);
+                $body.toggleClass('selector', true);
                 status = "selector";
                 $primaryHeaderBtn.toggleClass('icon-menu', false);
                 $primaryHeaderBtn.toggleClass('icon-back', true);
@@ -221,6 +224,7 @@ function goToDimension(e) {
     $dimensionBlock.show();
     $body.toggleClass('page', true);
     $body.toggleClass('home',false);
+    $body.toggleClass('selector', false);
     pageManager.changePage($(this).data("dimension"));
     setTimeout(function() {
         $('.modal-contest-toggler', $dimensionBlock).on('click', toggleModalContest);
