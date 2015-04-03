@@ -16,9 +16,9 @@ class Bar {
                             map: map
                         } );
 
-    	let color = type === 0 ? 0x09294c:
-    			    type === 1 ? 0x272cff:
-    				             0xfd9f4e;
+    	let color = type === 0 ? 0x1c4877:
+    			    type === 1 ? 0x61857f:
+    				             0xaf2f3f;
 
         material.color    = new THREE.Color(color);
         material.emissive = new THREE.Color(color);

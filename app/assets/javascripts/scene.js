@@ -56,7 +56,7 @@ function init () {
 	camera = new THREE.PerspectiveCamera( 60, width/height, 0.1, 10000 );
 	camera.position.z = 2.5;
 
-	light = new THREE.DirectionalLight( 0xffffff ); // soft white light
+	light = new THREE.DirectionalLight( 0xffffff , 0.5); // soft white light
 	light.position.set( 0, 0, 2 );
 	scene.add( light );
 	
