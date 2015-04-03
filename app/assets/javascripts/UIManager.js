@@ -32,6 +32,23 @@ function init() {
     
     $selectorBlock.hide();
     $dimensionBlock.hide();
+    
+    hideLoader();
+    setTimeout(function() {
+        goToHome();
+    },800);
+}
+
+function hideLoader() {
+    let tl = new TimelineLite();
+    tl.to("#loader", 0.5, {opacity: 0}, "+=1");
+    tl.set("#loader", {visibility: "hidden"});
+}
+
+function showLoader() {
+    let tl = new TimelineLite();
+    tl.set("#loader", {visibility: "visible"});
+    tl.to("#loader", 0.5, {opacity: 1});
 }
 
 /**
@@ -107,17 +124,9 @@ function toggleModalContest(e) {
         tl.to(this, 0.4, {padding: 0, width: "30px", height: "30px", "min-width": 0});
         tl.to(this, 0.4, {y: "-180px"});
         $body.toggleClass('modalContestOpened', true);
-        /*l.to(this, 0, {
-            position: "fixed",
-            bottom: "220px",
-            y: 0,
-            x: "-50%",
-            margin: 0
-        });*/
         modalContestOpen=true;
         
-        $('<div id="modalContest">').toggleClass('modalContest').html('<h4 class="inverted">WIN YOUR AMAZING TRIP !</h4><p>Lorem ipsum dolor sit amet je sais pas quoi dire</p><a href="#">« I dream do travel in a world (...) »<br/><strong>#myotherdimension</strong></a>').css('transform','translate(0,100%)').appendTo($body);
-        //$('#modalContest').on('click', toggleModalContest);
+        $('<div id="modalContest">').toggleClass('modalContest').html('<h4 class="inverted">WIN YOUR AMAZING TRIP !</h4><p>Win an inter-dimensional trip for 2 persons by tweeting this :</p><a href="http://twitter.com/home?status=I dream to travel in a world where (...) #myotherdimension @EMA_Project">« I dream to travel in a world (...) »<br/><strong>#myotherdimension</strong></a>').css('transform','translate(0,100%)').appendTo($body);
         tl.to("#modalContest", 0.4, {y: "0"}, "=-0.4");
     }
 }
