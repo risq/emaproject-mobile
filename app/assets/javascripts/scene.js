@@ -1,9 +1,8 @@
 let THREE = require('n3d-threejs');
 let TWEEN = require('tween.js');
 let Stats = require('stats-js');
-
 let Bar = require('./Bar');
-
+let $ = require('jquery');
 let width = window.innerWidth;
 let height = window.innerHeight;
 
@@ -13,7 +12,8 @@ let scene,
 	renderer,
 	light,
 	rootContainer,
-	texture;
+	texture,
+    onClickCallback;
 
 let bars = {
 	t0: {
@@ -34,7 +34,7 @@ let initTime, currentTime;
 
 let currentHighlighted = -1;
 
-let startX, moveX;
+let startX, startY, moveX, moveY;
 
 
 const nbBars = 64; 
@@ -87,6 +87,12 @@ function init () {
 	animate();
 
 
+}
+
+function setOnClick( callback ) {
+    
+    onClickCallback = callback;
+    
 }
  
 function animate () {
@@ -177,9 +183,6 @@ function generateBars () {
 		bars['t' + randType].container.add(bar.mesh);
 
 	}
-
-	
-
 }
 
 function highlightT( type ) {
@@ -189,6 +192,7 @@ function highlightT( type ) {
 	if (currentHighlighted > -1) {
 
 		var unHighlight = currentHighlighted;
+        currentHighlighted = -1;
 
 		var tween = new TWEEN.Tween( { x: 100 } )
 	      .to( { x: 0 }, 750 )
@@ -207,9 +211,11 @@ function highlightT( type ) {
 
 	}
 
-	if (type !== currentHighlighted) {
+	if (type !== currentHighlighted && type > -1) {
 
 		currentHighlighted = type;
+        
+        $('.dimensions-select').removeClass('t0 t1 t2').addClass('t' + type);
 
 		var tween = new TWEEN.Tween( { x: 0 } )
 	      .to( { x: 100 }, 750 )
@@ -262,33 +268,44 @@ function initEvents () {
 	renderer.domElement.addEventListener("touchstart", onTouchStart, false);
 	renderer.domElement.addEventListener("touchmove", onTouchMove, false);
 	renderer.domElement.addEventListener("touchend", onTouchEnd, false);
+	renderer.domElement.addEventListener("click", onClick, false);
 
+}
+
+function onClick () {
+    
+    onClickCallback(currentHighlighted);
+    
 }
 
 function onTouchStart ( event ) {
 
 	startX = event.touches[0].clientX;
+	startY = event.touches[0].clientY;
 
 }
 
 function onTouchMove ( event ) {
 
-	moveX = (startX - event.touches[0].clientX) / width;
+    moveX = (startX - event.touches[0].clientX) / width;
+    moveY = (startY - event.touches[0].clientY) / height;
 
 }
 
 function onTouchEnd ( event ) {
 
-	if ( moveX > 0.2 ) {
+    console.log(moveX, moveY);
+    if ( moveX > 0.2 ) {
+
 
 		highlightNext();
+    } else if ( moveX < -0.2 ) {
 
-	} else if ( moveX < -0.2 ) {
 
 		highlightPrev();
-
-	}
+    }
 	moveX = -1;
+    moveY = -1;
 
 }
 
@@ -302,6 +319,7 @@ function randomInt ( min, max ) {
 module.exports = {
 
 	init: init,
-	highlightNext: highlightNext
-
-}
+    highlightT: highlightT,
+    setOnClick: setOnClick
+    
+};

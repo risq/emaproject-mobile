@@ -5,6 +5,7 @@
 let $ = require('jquery');
 let gsap = require('gsap');
 let pageManager = require('./PageManager');
+let scene = require('./scene');
 
 // BLOCKS
 let $body = $('body');
@@ -32,6 +33,29 @@ function init() {
     
     $selectorBlock.hide();
     $dimensionBlock.hide();
+    
+    hideLoader();
+    setTimeout(function() {
+        goToHome();
+    },800);
+    
+    scene.setOnClick(function(dimension) {
+        
+        goToDimension(null, dimension);
+        
+    })
+}
+
+function hideLoader() {
+    let tl = new TimelineLite();
+    tl.to("#loader", 0.5, {opacity: 0}, "+=1");
+    tl.set("#loader", {visibility: "hidden"});
+}
+
+function showLoader() {
+    let tl = new TimelineLite();
+    tl.set("#loader", {visibility: "visible"});
+    tl.to("#loader", 0.5, {opacity: 1});
 }
 
 /**
@@ -107,17 +131,9 @@ function toggleModalContest(e) {
         tl.to(this, 0.4, {padding: 0, width: "30px", height: "30px", "min-width": 0});
         tl.to(this, 0.4, {y: "-180px"});
         $body.toggleClass('modalContestOpened', true);
-        /*l.to(this, 0, {
-            position: "fixed",
-            bottom: "220px",
-            y: 0,
-            x: "-50%",
-            margin: 0
-        });*/
         modalContestOpen=true;
         
-        $('<div id="modalContest">').toggleClass('modalContest').html('<h4 class="inverted">WIN YOUR AMAZING TRIP !</h4><p>Lorem ipsum dolor sit amet je sais pas quoi dire</p><a href="#">« I dream do travel in a world (...) »<br/><strong>#myotherdimension</strong></a>').css('transform','translate(0,100%)').appendTo($body);
-        //$('#modalContest').on('click', toggleModalContest);
+        $('<div id="modalContest">').toggleClass('modalContest').html('<h4 class="inverted">WIN YOUR AMAZING TRIP !</h4><p>Win an inter-dimensional trip for 2 persons by tweeting this :</p><a href="http://twitter.com/home?status=I dream to travel in a world where (...) #myotherdimension @EMA_Project">« I dream to travel in a world (...) »<br/><strong>#myotherdimension</strong></a>').css('transform','translate(0,100%)').appendTo($body);
         tl.to("#modalContest", 0.4, {y: "0"}, "=-0.4");
     }
 }
@@ -141,11 +157,14 @@ function goBack() {
 
 function goToHome() {
     // WE FIRSTLY CHANGE THE PAGE FOR THE HOME
+    scene.highlightT(-1);
+    
     $homeBlock.show();
     $selectorBlock.hide();
     $dimensionBlock.hide();
     $body.toggleClass('page', false);
     $body.toggleClass('home', true);
+    $body.toggleClass('selector', false);
     status = "home";
     $primaryHeaderBtn.toggleClass('icon-menu', true);
     $primaryHeaderBtn.toggleClass('icon-back', false);
@@ -170,24 +189,27 @@ function goToSelector() {
             tl.to("#startBtn", 0.4, { ease: Back.easeOut.config(1.7), width: "50px", height: "50px", padding: "0"});
             tl.to("#hashtagBtn", 0.2, { ease: Back.easeIn.config(1.7), y: 100 });
             tl.to("#startBtn", 0.2, { ease: Back.easeIn.config(1.7), scale: 0});
-            
+
             // SHOW THE ACTUAL PAGE
             setTimeout(function() {
-                $homeBlock.hide(); 
+                $homeBlock.hide();
                 $selectorBlock.show();
                 $dimensionBlock.hide();
                 $body.toggleClass('page', true);
                 $body.toggleClass('home',false);
+                $body.toggleClass('selector', true);
                 status = "selector";
                 $primaryHeaderBtn.toggleClass('icon-menu', false);
                 $primaryHeaderBtn.toggleClass('icon-back', true);
-                
+
                 // RESET ANIMATED ELEMENTS FROM HOME
                 TweenMax.set("#startBtn, #hashtagBtn, section.home .content .excerpt", {clearProps:"all"});
+                
+                scene.highlightT(0);
             }, 1200);
             break;
         default:
-            
+
             // FADE OUT OF THE CURRENT PAGE BEFORE ANYTHING
             var tl = new TimelineMax();
             tl.to(".dimension", 0.25, {opacity: 0});
@@ -199,6 +221,7 @@ function goToSelector() {
                 $dimensionBlock.hide();
                 $body.toggleClass('page', true);
                 $body.toggleClass('home',false);
+                $body.toggleClass('selector', true);
                 status = "selector";
                 $primaryHeaderBtn.toggleClass('icon-menu', false);
                 $primaryHeaderBtn.toggleClass('icon-back', true);
@@ -207,25 +230,30 @@ function goToSelector() {
     }
 }
 
-function goToDimension(e) {
+function goToDimension(e, pageId) {
     
+    pageId = pageId ? "multidimensional-" + (pageId + 1) : ( $(this).data("dimension") || "multidimensional-1" );
+
     // IN ANY CASE, WE INIT THE OPACITY OF THE PAGE TO 0
     var tl = new TimelineMax();
     tl.to(".dimension", 0, {opacity: 0});
-    
+
     // WE TOGGLE THE NEW CONTENT
-    e.preventDefault();
+    if (e) {
+        e.preventDefault();
+    }
     toggleOffAsides();
     $homeBlock.hide();
     $selectorBlock.hide();
     $dimensionBlock.show();
     $body.toggleClass('page', true);
     $body.toggleClass('home',false);
-    pageManager.changePage($(this).data("dimension"));
+    $body.toggleClass('selector', false);
+    pageManager.changePage(pageId);
     setTimeout(function() {
         $('.modal-contest-toggler', $dimensionBlock).on('click', toggleModalContest);
     }, 300);
-    
+
     // Check if it's a page that comes from home or from the dimensions selector
     if($(this).hasClass('fromHome')) {
         status = "page";

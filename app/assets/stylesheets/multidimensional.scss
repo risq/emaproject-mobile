@@ -95,6 +95,11 @@ section.dimension > .content {
     
     &.withoutHeader {
       margin-top: 60px;
+      
+      h2 {
+        font-size: 1.2em;
+        margin-bottom: 0.5em;
+      }
     }
 
     .bloc-info {

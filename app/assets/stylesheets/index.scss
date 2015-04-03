@@ -73,3 +73,52 @@ section.home {
 .tuto-swipe {
   padding: 30px 0;
 }
+
+
+.dimensions-select {
+  width: 300vw;
+  left: 0;
+  bottom: 100px;
+  top: inherit;
+  transform: translateX(33%);
+  transition: transform 200ms ease-in-out;
+
+  &.t0 {
+
+    transform: translateX(0);
+
+  }
+  
+  &.t1 {
+
+    transform: translateX(-33%);
+
+  }
+  
+  &.t2 {
+
+    transform: translateX(-66%);
+
+  }
+  
+  > li {
+    float: left;
+    width: 100vw;
+    text-align: center;
+    
+    a {
+
+      font-size: 20px;
+      color: #fff;
+      font-weight: 700;
+
+    }
+
+  }
+}
+
+
+body.selector {
+  overflow: hidden;
+  
+}
