@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="org.emaproject.hello" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloWorld</name>
+    <name>EMA project</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.
     </description>
@@ -9,4 +9,10 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <platform name="android">
+        <icon src="assets/images/app-icon-ema.png" density="ldpi" />
+        <icon src="assets/images/app-icon-ema.png" density="mdpi" />
+        <icon src="assets/images/app-icon-ema.png" density="hdpi" />
+        <icon src="assets/images/app-icon-ema.png" density="xhdpi" />
+    </platform>
 </widget>
