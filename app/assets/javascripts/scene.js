@@ -112,10 +112,7 @@ function update () {
 
 	let lastTime = currentTime;
 	currentTime = Date.now() - initTime;
-
-	let deltaTime = (currentTime - lastTime) * 0.005;
-
-	let time = Date.now() - initTime;
+    
 
 	let sin1 = Math.sin(currentTime * 0.001) * 0.1;
 	let sin2 = Math.sin(currentTime * 0.001 + 2 * Math.PI / 3) * 0.1;
@@ -270,6 +267,8 @@ function initEvents () {
 	renderer.domElement.addEventListener("touchend", onTouchEnd, false);
 	renderer.domElement.addEventListener("click", onClick, false);
 
+    window.addEventListener('resize', onWindowResize, false);
+
 }
 
 function onClick () {
@@ -293,16 +292,15 @@ function onTouchMove ( event ) {
 }
 
 function onTouchEnd ( event ) {
-
-    console.log(moveX, moveY);
+    
     if ( moveX > 0.2 ) {
-
-
+        
 		highlightNext();
+        
     } else if ( moveX < -0.2 ) {
-
-
+        
 		highlightPrev();
+        
     }
 	moveX = -1;
     moveY = -1;
@@ -314,6 +312,20 @@ function randomInt ( min, max ) {
     return Math.floor( Math.random() * ( max - min + 1 ) + min );
 
 }
+
+
+    function onWindowResize () {
+
+        renderer.setSize( window.innerWidth, window.innerHeight );
+
+        camera.aspect	= window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        
+    }
+
+
+
+
  
 
 module.exports = {
