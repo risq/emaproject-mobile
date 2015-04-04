@@ -92,7 +92,10 @@ section.dimension > .content {
     background: $colorWhite;
     z-index: 300;
     transform: translate3d(0,0,0);
-    
+    -webkit-animation: upInfos 1s linear 1s;
+    animation: upInfos 1s linear 1s;
+    @include animation-both();
+
     &.withoutHeader {
       margin-top: 60px;
       

@@ -140,3 +140,49 @@
     transform: rotate(360deg);
   }
 }
+
+@-webkit-keyframes upInfos {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 98vh;
+  }
+}
+
+@-moz-keyframes upInfos {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 98vh;
+  }
+}
+
+@-ms-keyframes upInfos {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 98vh;
+  }
+}
+
+@-o-keyframes upInfos {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 98vh;
+  }
+}
+
+@keyframes upInfos {
+  0% {
+    margin-top: 100vh;
+  }
+  100% {
+    margin-top: 98vh;
+  }
+}
+
