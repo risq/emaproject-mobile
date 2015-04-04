@@ -101,9 +101,12 @@ section.dimension > .content {
     background: $colorWhite;
     z-index: 300;
     @include translate3d(0,0,0);
-    
+    @include animation(upInfos 1s linear 1s);
+    @include animation-both();
+
     &.withoutHeader {
       margin-top: 60px;
+      @include animation(none);
       
       h2 {
         font-size: 1.2em;

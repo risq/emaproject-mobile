@@ -29,8 +29,6 @@ class Bar {
 
     	let geometry = new THREE.BoxGeometry( size.x, size.y, size.z );
 
-        console.log(size.y / 2)
-
         this.changeUVs(geometry, size.x * 10, 1, 0.5+pos.x, 0)
 
         this.mesh = new THREE.Mesh( geometry, material );

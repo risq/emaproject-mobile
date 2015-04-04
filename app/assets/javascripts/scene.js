@@ -78,7 +78,7 @@ function init () {
 	scene.add( rootContainer );
 
 
-	texture = THREE.ImageUtils.loadTexture('/assets/images/texture.png', {}, function () {
+	texture = THREE.ImageUtils.loadTexture('assets/images/texture.png', {}, function () {
 		generateBars();
 	});
 
