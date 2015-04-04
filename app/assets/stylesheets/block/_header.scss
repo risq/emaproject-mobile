@@ -6,7 +6,7 @@ header.headBar {
   box-sizing: border-box;
   padding: 25px;
   z-index: 900;
-  transition: background 250ms;
+  @include transition(background 250ms);
 
   .primary-header-btn {
     float: left;

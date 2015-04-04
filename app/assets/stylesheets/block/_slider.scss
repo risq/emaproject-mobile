@@ -24,47 +24,25 @@
       left: 0;
       top: 0;
       display: inline-block;
-      opacity: 0;
+      @include opacity(0);
       z-index: 1;
       overflow: hidden;
-      -webkit-transition: opacity 2000ms ease;
-      -moz-transition: opacity 2000ms ease;
-      -ms-transition: opacity 2000ms ease;
-      -o-transition: opacity 2000ms ease;
-      transition: opacity 2000ms ease;
-
-      /*-webkit-transform: translate3d(0,0,0);
-      -moz-transform: translate3d(0,0,0);
-      -ms-transform: translate3d(0,0,0);
-      -o-transform: translate3d(0,0,0);
-      transform: translate3d(0,0,0);*/
+      @include transition(opacity 2000ms ease);
 
       img {
         width: 100%;
       }
 
       &.slide1 {
-        -webkit-animation: slider 12000ms infinite -2000ms;
-        -moz-animation: slider 12000ms infinite -2000ms;
-        -ms-animation: slider 12000ms infinite -2000ms;
-        -o-animation: slider 12000ms infinite -2000ms;
-        animation: slider 12000ms infinite -2000ms;
+        @include animation(slider 12000ms infinite -2000ms);
       }
 
       &.slide2 {
-        -webkit-animation: slider 12000ms infinite 2000ms;
-        -moz-animation: slider 12000ms infinite 2000ms;
-        -ms-animation: slider 12000ms infinite 2000ms;
-        -o-animation: slider 12000ms infinite 2000ms;
-        animation: slider 12000ms infinite 2000ms;
+        @include animation(slider 12000ms infinite 2000ms);
       }
 
       &.slide3 {
-        -webkit-animation: slider 12000ms infinite 6000ms;
-        -moz-animation: slider 12000ms infinite 6000ms;
-        -ms-animation: slider 12000ms infinite 6000ms;
-        -o-animation: slider 12000ms infinite 6000ms;
-        animation: slider 12000ms infinite 6000ms;
+        @include animation(slider 12000ms infinite 6000ms);
       }
     }
   }

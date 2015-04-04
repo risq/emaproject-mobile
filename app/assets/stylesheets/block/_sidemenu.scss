@@ -1,9 +1,9 @@
 .sideMenu-active {
-  transform: translate3d($sideMenuWidth, 0, 0);
+  @include translate3d($sideMenuWidth, 0, 0);
 }
 
 .sideInfos-active {
-  transform: translate3d(-$sideMenuWidth, 0, 0);
+  @include translate3d(-$sideMenuWidth, 0, 0);
 }
   
 .sideMenu-active, .sideInfos-active {
@@ -11,7 +11,7 @@
   
   .overlayGlobal {
     visibility: visible;
-    opacity: 1;
+    @include opacity(1);
   }
 }
 
@@ -22,8 +22,8 @@
   height: 100%;
   background-color: rgba(0,0,0,.5);
   z-index: 2;
-  opacity: 0;
-  transition: all 250ms;
+  @include opacity(0);
+  @include transition(all 250ms);
   visibility: hidden;
 }
 
@@ -160,15 +160,15 @@ aside.sideinfos {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  @include translate(-50%,-50%);
   font-size: .7em;
-  opacity:0;
-  transition: all 250ms;
-  transition-delay: 400ms;
+  @include opacity(0);
+  @include transition(all 250ms);
+  @include transition-delay(400ms);
 }
 
 .modalContestOpened .modal-contest-toggler{
   &:before {
-    opacity: 1;
+    @include opacity(1);
   }
 }

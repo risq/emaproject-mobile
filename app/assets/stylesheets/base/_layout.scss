@@ -13,7 +13,7 @@ body {
   background: $colorWhite;
   color: $colorWhite;
   font-family: 'latoregular', sans-serif;
-  transition: transform 250ms;
+  @include transition(transform 250ms);
   @include font-smoothing();
 }
 
@@ -46,7 +46,7 @@ canvas {
 main {
   z-index: 1;
   background: rgba(20,26,51,.9);
-  transition: background 1000ms ease-out;
+  @include transition(background 1000ms ease-out);
 }
 
 .page main {
@@ -105,7 +105,7 @@ em {
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  @include translate(-50%,-50%);
 }
 
 .text-align-center {
@@ -214,28 +214,28 @@ em {
     height: 3px;
     position: absolute;
     width: 3px;
-    animation: sound 0ms -800ms linear infinite alternate;
+    @include animation(sound 0ms -800ms linear infinite alternate);
   }
 
   @keyframes sound {
     0% {
-      opacity: .35;
+      @include opacity(.35);
       height: 3px;
     }
     100% {
-      opacity: 1;
+      @include opacity(1);
       height: 28px;
     }
   }
 
-  .bar:nth-child(1)  { left: 1px; animation-duration: 474ms; }
-  .bar:nth-child(2)  { left: 5px; animation-duration: 433ms; }
-  .bar:nth-child(3)  { left: 9px; animation-duration: 407ms; }
-  .bar:nth-child(4)  { left: 13px; animation-duration: 458ms; }
-  .bar:nth-child(5)  { left: 17px; animation-duration: 400ms; }
-  .bar:nth-child(6)  { left: 21px; animation-duration: 427ms; }
-  .bar:nth-child(7)  { left: 25px; animation-duration: 441ms; }
-  .bar:nth-child(8)  { left: 29px; animation-duration: 419ms; }
-  .bar:nth-child(9)  { left: 33px; animation-duration: 487ms; }
-  .bar:nth-child(10) { left: 37px; animation-duration: 442ms; }
+  .bar:nth-child(1)  { left: 1px; @include animation-duration(474ms); }
+  .bar:nth-child(2)  { left: 5px; @include animation-duration(433ms); }
+  .bar:nth-child(3)  { left: 9px; @include animation-duration(407ms); }
+  .bar:nth-child(4)  { left: 13px; @include animation-duration(458ms); }
+  .bar:nth-child(5)  { left: 17px; @include animation-duration(400ms); }
+  .bar:nth-child(6)  { left: 21px; @include animation-duration(427ms); }
+  .bar:nth-child(7)  { left: 25px; @include animation-duration(441ms); }
+  .bar:nth-child(8)  { left: 29px; @include animation-duration(419ms); }
+  .bar:nth-child(9)  { left: 33px; @include animation-duration(487ms); }
+  .bar:nth-child(10) { left: 37px; @include animation-duration(442ms); }
 }

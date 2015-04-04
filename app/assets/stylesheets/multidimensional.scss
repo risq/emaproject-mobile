@@ -8,8 +8,8 @@ section.dimension > .content {
 
   // --- HEADER ---
   header {
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
     position: fixed;
     top: 0;
     z-index: 100;
@@ -25,16 +25,25 @@ section.dimension > .content {
 
     .bg1 {
       background: url('../images/d1-2.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
     }
 
     .bg2 {
       background: url('../images/d2-3.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
     }
 
     .bg3 {
       background: url('../images/d3-1.jpg') no-repeat center center fixed;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
       background-size: cover;
     }
 
@@ -91,7 +100,7 @@ section.dimension > .content {
     position: relative;
     background: $colorWhite;
     z-index: 300;
-    transform: translate3d(0,0,0);
+    @include translate3d(0,0,0);
     
     &.withoutHeader {
       margin-top: 60px;
@@ -209,18 +218,15 @@ section.dimension > .content {
         }
 
         &.speed1:before {
-          -webkit-animation: rotation 3s linear infinite;
-          animation: rotation 3s linear infinite;
+          @include animation(rotation 3s linear infinite);
         }
 
         &.speed2:before {
-          -webkit-animation: rotation 2s linear infinite;
-          animation: rotation 2s linear infinite;
+          @include animation(rotation 2s linear infinite);
         }
 
         &.speed3:before {
-          -webkit-animation: rotation 1s linear infinite;
-          animation: rotation 1s linear infinite;
+          @include animation(rotation 1s linear infinite);
         }
 
         &:before {
@@ -277,7 +283,7 @@ section.dimension > .content {
     text-align: center;
     background: $colorDarkest;
     z-index: 200;
-    transform: translate3d(0,0,0);
+    @include translate3d(0,0,0);
 
     .content {
       padding: 7vh 10vw;
@@ -377,16 +383,28 @@ section.dimension > .content {
 
       &.bg1 {
         background: url('../images/d2-1.jpg') center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
         background-size: cover;
       }
 
       &.bg2 {
         background: url('../images/d3-2.jpg') center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
         background-size: cover;
       }
 
       &.bg3 {
         background: url('../images/d1-2.jpg') center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        -ms-background-size: cover;
         background-size: cover;
       }
     }

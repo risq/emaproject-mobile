@@ -19,8 +19,8 @@
   position: fixed;
   top: 25%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 100ms;
+  @include translate(-50%, -50%);
+  @include transition(all 100ms);
 }
 
 .page .headBar { 
@@ -29,7 +29,7 @@
   .logo {
     top: 0;
     width: 40px;
-    transform: translate(-50%, 20px);
+    @include translate(-50%, 20px);
   }
 }
 
@@ -67,7 +67,7 @@ section.home {
   position: absolute;
   top: 0;
   left: 50%;
-  transform: translate(-50%,0);
+  @include translate(-50%,0);
 }
 
 .tuto-swipe {
@@ -80,24 +80,24 @@ section.home {
   left: 0;
   bottom: 100px;
   top: inherit;
-  transform: translateX(33%);
-  transition: transform 200ms ease-in-out;
+  @include translateX(33%);
+  @include transition(transform 200ms ease-in-out);
 
   &.t0 {
 
-    transform: translateX(0);
+    @include translateX(0);
 
   }
   
   &.t1 {
 
-    transform: translateX(-33%);
+    @include translateX(-33%);
 
   }
   
   &.t2 {
 
-    transform: translateX(-66%);
+    @include translateX(-66%);
 
   }
   
@@ -119,6 +119,6 @@ section.home {
 
 
 body.selector {
+  position: relative;
   overflow: hidden;
-  
 }

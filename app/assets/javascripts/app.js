@@ -3,7 +3,7 @@
  */
 
 let scene = require('./scene');
-let uiManager = require('./UIManager');
+let uiManager = require('./UIManager'); 
 
 scene.init();
 
